@@ -178,7 +178,6 @@ public class Principal100 extends javax.swing.JFrame {
         });
         patientsTable.setAutoscrolls(false);
         patientsTable.setRowHeight(19);
-        patientsTable.setRowSorter(null);
         patientsTable.getTableHeader().setReorderingAllowed(false);
         patientsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -272,6 +271,7 @@ public class Principal100 extends javax.swing.JFrame {
         });
         searchTable.setAutoscrolls(false);
         searchTable.setRowHeight(19);
+        searchTable.setSurrendersFocusOnKeystroke(true);
         searchTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(searchTable);
         if (searchTable.getColumnModel().getColumnCount() > 0) {

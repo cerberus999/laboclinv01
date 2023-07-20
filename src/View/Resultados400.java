@@ -14,6 +14,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import laboclinv01.SqlConector;
+import laboclinv01.TextAutoCompleterP;
 
 /**
  *
@@ -24,29 +25,49 @@ public class Resultados400 extends javax.swing.JFrame {
     private static int ID;
     
     int lastMed = 0;
-    TextAutoCompleter autoMedic;
+    TextAutoCompleterP autoMedic;
     TextAutoCompleter autoExam;
     DefaultTableModel dtm;
     Vector<String[]> analitos = new Vector<>();
     ArrayList<Object> namesANA;
-    ArrayList<Integer> medicos;
+    ArrayList<Object[]> medicos;
     /**
      * Creates new form AnalitosMod
      * @param identificador
      */
     public Resultados400(int identificador) {
         initComponents();
-        initUI();
         Resultados400.ID = identificador;
+        initUI();
+    }
+    
+     private void setName(){
+        String query = "SELECT * FROM paciente WHERE PAC_ID = " + ID;
+        SqlConector.conectar();
+        try{
+            ResultSet rs = SqlConector.executeQuery(query);
+            rs.next();
+            jLabel4.setText(rs.getString(3) +" "+ rs.getString(4) +" "+ rs.getString(5));
+            SqlConector.closeConn();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
+    
+    
+//                int aux = rs.getInt(1);
+//                medicos.add((aux));
+//                if(lastMed < aux){
+//                    lastMed = aux;
+//                }
     private void initUI(){
-        
+        setName();
         medicos = new ArrayList();
         jTextField3.setText(new Date(System.currentTimeMillis()).toString());
         dtm = (DefaultTableModel) jTable1.getModel();
         namesANA = new ArrayList();
-        autoMedic = new TextAutoCompleter(jTextField1);
+        autoMedic = new TextAutoCompleterP(jTextField1);
         ResultSet rs;
         
         String query;
@@ -55,11 +76,11 @@ public class Resultados400 extends javax.swing.JFrame {
             query = "SELECT * FROM medico ORDER BY MED_Nombres";
             rs = SqlConector.executeQuery(query);
             while(rs.next()){
-                int aux = rs.getInt(1);
-                medicos.add((aux));
-                if(lastMed < aux){
-                    lastMed = aux;
+                String[] aux = new String[2];
+                for(int i=0 ; i<2; i++){
+                    aux[i] = rs.getString(i+1);
                 }
+                medicos.add(aux);
                 autoMedic.addItem(rs.getString(2));
             }
             autoMedic.setMode(0);
@@ -83,7 +104,6 @@ public class Resultados400 extends javax.swing.JFrame {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        
         autoExam = new TextAutoCompleter(jTextField2);
         autoExam.addItems(namesANA);
         autoExam.setMode(0);
@@ -147,6 +167,7 @@ public class Resultados400 extends javax.swing.JFrame {
         jTable1.setRowHeight(19);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
@@ -323,10 +344,11 @@ public class Resultados400 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 19, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -400,21 +422,39 @@ public class Resultados400 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String query;
-        boolean isMedic = autoExam.itemExists(jTextField1.getText());
+        boolean isMedic = autoMedic.itemExists(jTextField1.getText());
+        SqlConector.conectar();
         try{
+            ResultSet rs;
             if(!isMedic){
-                query = "INSERT INTO medico VALUES (0,"+ jTextField1.getText() +")";
+                query = "INSERT INTO medico VALUES (0,'"+ jTextField1.getText() +"')";
                 SqlConector.executeQuery(query);
-                lastMed += 1;
             }
+            query = "SELECT * FROM medico WHERE MED_Nombres LIKE '"+jTextField1.getText()+"' LIMIT 1";
+            rs = SqlConector.executeQuery(query);
+            rs.next();
+            lastMed = rs.getInt(1);
             
-            query = "INSERT INTO hojaresultados VALUES ("+ 0 +","+jTextField3.getText()+","+ID+")";
+            query = "INSERT INTO hojaresultados VALUES ("+ 0 +",'"+
+                    jTextField3.getText()+"',"+ID+","+ lastMed +")";
             SqlConector.executeQuery(query);
-            Vector<Object> aux = (Vector)(dtm.getDataVector()).elementAt(0);
-            String valueRes = (String)aux.elementAt(3);
-            String idAna = (String)aux.elementAt(0);
-            query = "INSERT INTO resultado values (" + valueRes + ","+idAna+ ",)";
+            
+            query = "SELECT * FROM hojaresultados WHERE HR_ID LIKE '%%' ORDER BY HR_ID DESC LIMIT 1";
+            rs = SqlConector.executeQuery(query);
+            rs.next();
+            String idHR = rs.getString(1);
+            
+            int limit = dtm.getRowCount();
+            Vector<Object> aux;
+            for(int i=0;i<limit;i++){
+                aux = (Vector)(dtm.getDataVector()).elementAt(i);
+                String valueRes = (String)aux.elementAt(2);
+                String idAna = (String)aux.elementAt(0);
+                query = "INSERT INTO resultado values ('" + valueRes + "',"+idAna+ ","+ idHR +")";
+                SqlConector.executeQuery(query);
+            }
             SqlConector.closeConn();
+            JOptionPane.showMessageDialog(this, "Datos Guardados con exito!");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

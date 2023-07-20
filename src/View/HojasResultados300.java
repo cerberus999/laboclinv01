@@ -5,6 +5,8 @@
  */
 package View;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -33,6 +35,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
     
     private void getDates(){
         DefaultTableModel dtm = (DefaultTableModel) AnalisysTable.getModel();
+        int aux = dtm.getRowCount();
+        while(aux > 0){
+            dtm.removeRow(0);
+            aux--;
+        }
         String query = "SELECT HR_FechaEmision, MED_Nombres FROM medico AS m," + 
                 " paciente AS p, hojaresultados AS hr WHERE p.PAC_ID = hr.PAC_ID " + 
                 "AND hr.MED_ID = m.MED_ID AND p.PAC_ID = " + ID ;
@@ -88,6 +95,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         addRes = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        editRes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -191,6 +199,14 @@ public class HojasResultados300 extends javax.swing.JFrame {
             }
         });
 
+        editRes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        editRes.setText("Editar");
+        editRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editResActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,7 +233,8 @@ public class HojasResultados300 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -237,7 +254,10 @@ public class HojasResultados300 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addRes))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(addRes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editRes)))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,12 +305,48 @@ public class HojasResultados300 extends javax.swing.JFrame {
 
     private void addResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResActionPerformed
         Resultados400 r4 = new Resultados400(ID);
+        r4.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+           }
+
+            @Override
+            public void windowClosed(WindowEvent we) {
+                setVisible(true);
+                getDates();
+            }
+
+            @Override
+            public void windowIconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) {
+            }
+        });
         r4.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addResActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void editResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editResActionPerformed
+        
+    }//GEN-LAST:event_editResActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,6 +384,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
     private javax.swing.JButton addRes;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton btnClose;
+    private javax.swing.JButton editRes;
     private javax.swing.JButton forwBtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;

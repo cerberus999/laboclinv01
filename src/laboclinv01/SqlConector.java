@@ -44,7 +44,7 @@ public class SqlConector {
     public static ResultSet executeQuery(String query) throws SQLException{
         ResultSet rs = null;
         PreparedStatement ps = con.prepareStatement(query);
-        if(query.contains("UPDATE")){
+        if(query.contains("UPDATE") || query.contains("INSERT")){
             ps.executeUpdate();
         }else{
             rs = ps.executeQuery();

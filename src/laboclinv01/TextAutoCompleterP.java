@@ -6,11 +6,31 @@
 package laboclinv01;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.util.ArrayList;
+import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author Lenovo
  */
-public class TextAutoCompleterP{
+public class TextAutoCompleterP extends TextAutoCompleter{
     
+    
+    
+    public TextAutoCompleterP(JTextComponent jtc, Object[] os, int i) {
+        super(jtc, os, i);
+    }
+    
+    public TextAutoCompleterP(JTextComponent jtc, ArrayList<Object> al, int i) {
+        super(jtc, al, i);
+    }
+    
+     public TextAutoCompleterP(JTextComponent jtc) {
+        super(jtc);
+    }
+    
+    public ArrayList<Object> getItemsAL(){
+        ArrayList<Object> res = items;
+        return res;
+    }
 }
