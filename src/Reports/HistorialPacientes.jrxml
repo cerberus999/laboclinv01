@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty">
+	<property name="ireport.zoom" value="1.1289478601075689"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<style name="table 1" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF" lineSpacing="Single"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Pacientes">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     paciente.`PAC_FechaNac` AS paciente_PAC_FechaNac,
+     paciente.`PAC_Edad` AS paciente_PAC_Edad,
+     paciente.`PAC_Sexo` AS paciente_PAC_Sexo,
+     paciente.`PAC_CI` AS paciente_PAC_CI
+FROM
+     `paciente` paciente INNER JOIN `hojaresultados` hojaresultados ON paciente.`PAC_ID` = hojaresultados.`PAC_ID`]]>
+		</queryString>
+		<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+		<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+		<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+		<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+		<field name="paciente_PAC_FechaNac" class="java.sql.Date"/>
+		<field name="paciente_PAC_Edad" class="java.lang.String"/>
+		<field name="paciente_PAC_Sexo" class="java.lang.String"/>
+		<field name="paciente_PAC_CI" class="java.lang.String"/>
+		<group name="hojaresultados_HR_FechaEmision">
+			<groupExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="FechaIni" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2023-07-18"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FechaFin" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2023-07-23"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     hojaresultados.`HR_ID` AS hojaresultados_HR_ID,
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     hojaresultados.`PAC_ID` AS hojaresultados_PAC_ID,
+     hojaresultados.`MED_ID` AS hojaresultados_MED_ID,
+     paciente.`PAC_ID` AS paciente_PAC_ID,
+     paciente.`PAC_CI` AS paciente_PAC_CI,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     paciente.`PAC_FechaNac` AS paciente_PAC_FechaNac,
+     paciente.`PAC_Edad` AS paciente_PAC_Edad,
+     paciente.`PAC_Sexo` AS paciente_PAC_Sexo,
+     paciente.`PAC_oculto` AS paciente_PAC_oculto
+FROM
+     `paciente` paciente INNER JOIN `hojaresultados` hojaresultados ON paciente.`PAC_ID` = hojaresultados.`PAC_ID`
+WHERE 
+ 	HR_FechaEmision BETWEEN $P{FechaIni} AND $P{FechaFin}
+GROUP BY 
+	paciente_PAC_ID
+ORDER BY 
+	HR_FechaEmision ASC]]>
+	</queryString>
+	<field name="hojaresultados_HR_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+	<field name="hojaresultados_PAC_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_MED_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_CI" class="java.lang.String"/>
+	<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+	<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+	<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+	<field name="paciente_PAC_FechaNac" class="java.sql.Date"/>
+	<field name="paciente_PAC_Edad" class="java.lang.String"/>
+	<field name="paciente_PAC_Sexo" class="java.lang.String"/>
+	<field name="paciente_PAC_oculto" class="java.lang.Boolean"/>
+	<group name="hojaresultados_HR_FechaEmision">
+		<groupExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField pattern="dd/MM/yyyy">
+					<reportElement mode="Transparent" x="495" y="0" width="76" height="20">
+						<printWhenExpression><![CDATA[!$P{FechaIni}.equals("")]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="8"/>
+		</groupFooter>
+	</group>
+	<group name="HR_ID">
+		<groupExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<frame>
+					<reportElement mode="Opaque" x="1" y="0" width="571" height="23" backcolor="#6666FF"/>
+					<staticText>
+						<reportElement style="table" mode="Transparent" x="42" y="0" width="202" height="23" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+							<font size="12"/>
+						</textElement>
+						<text><![CDATA[Nombre Completo]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" mode="Transparent" x="245" y="0" width="128" height="23" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+							<font size="12"/>
+						</textElement>
+						<text><![CDATA[Fecha de nacimiento]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" mode="Transparent" x="373" y="0" width="121" height="23" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+							<font size="12"/>
+						</textElement>
+						<text><![CDATA[Edad]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" mode="Transparent" x="495" y="0" width="76" height="23" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+							<font size="12"/>
+						</textElement>
+						<text><![CDATA[Sexo]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table" mode="Transparent" x="0" y="0" width="41" height="23" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+							<font size="12"/>
+						</textElement>
+						<text><![CDATA[Nº]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="10">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="0" width="572" height="10" backcolor="#6666FF"/>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="39">
+			<staticText>
+				<reportElement x="1" y="0" width="572" height="39"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Historico de Pacientes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="418" y="0" width="65" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaIni}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="508" y="0" width="65" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23"/>
+	</columnHeader>
+	<detail>
+		<band height="23">
+			<textField>
+				<reportElement x="0" y="3" width="42" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="3" width="202" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Nombres}+" "+$F{paciente_PAC_ApePat}+" "+$F{paciente_PAC_ApeMat}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="246" y="3" width="128" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_FechaNac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="496" y="3" width="76" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Sexo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="22" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="-23" width="1" height="46" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="571" y="-23" width="1" height="46"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="495" y="-23" width="1" height="45" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="373" y="-23" width="1" height="45" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="42" y="-23" width="1" height="45" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="245" y="-23" width="1" height="45" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="374" y="3" width="121" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Edad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21"/>
+	</pageFooter>
+	<summary>
+		<band height="127">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="129" height="127"/>
+				<imageExpression class="java.awt.Image"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+new com.google.zxing.qrcode.QRCodeWriter().encode(
+"https://sipro01.firebaseapp.com/",
+com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

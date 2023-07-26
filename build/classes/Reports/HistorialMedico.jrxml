@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebe2aa3b-a501-42c1-a54c-76a4ceb773cb">
+	<property name="ireport.zoom" value="1.24184264611831"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FechaIni" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     medico.`MED_ID` AS medico_MED_ID,
+     medico.`MED_Nombres` AS medico_MED_Nombres,
+     hojaresultados.`HR_ID` AS hojaresultados_HR_ID,
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     hojaresultados.`PAC_ID` AS hojaresultados_PAC_ID,
+     hojaresultados.`MED_ID` AS hojaresultados_MED_ID,
+     paciente.`PAC_ID` AS paciente_PAC_ID,
+     paciente.`PAC_CI` AS paciente_PAC_CI,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     paciente.`PAC_FechaNac` AS paciente_PAC_FechaNac,
+     paciente.`PAC_Edad` AS paciente_PAC_Edad,
+     paciente.`PAC_Sexo` AS paciente_PAC_Sexo,
+     paciente.`PAC_oculto` AS paciente_PAC_oculto
+FROM
+     `medico` medico INNER JOIN `hojaresultados` hojaresultados ON medico.`MED_ID` = hojaresultados.`MED_ID`
+     INNER JOIN `paciente` paciente ON hojaresultados.`PAC_ID` = paciente.`PAC_ID`
+WHERE 
+     hojaResultados.`HR_FechaEmision` BETWEEN $P{FechaIni} AND $P{FechaFin}
+ORDER BY  medico.`MED_ID`, hojaresultados.`HR_FechaEmision` ASC]]>
+	</queryString>
+	<field name="medico_MED_ID" class="java.lang.Integer"/>
+	<field name="medico_MED_Nombres" class="java.lang.String"/>
+	<field name="hojaresultados_HR_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+	<field name="hojaresultados_PAC_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_MED_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_CI" class="java.lang.String"/>
+	<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+	<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+	<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+	<field name="paciente_PAC_FechaNac" class="java.sql.Date"/>
+	<field name="paciente_PAC_Edad" class="java.lang.String"/>
+	<field name="paciente_PAC_Sexo" class="java.lang.String"/>
+	<field name="paciente_PAC_oculto" class="java.lang.Boolean"/>
+	<group name="medico_MED_ID" isStartNewColumn="true">
+		<groupExpression><![CDATA[$F{medico_MED_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField evaluationTime="Group" evaluationGroup="medico_MED_ID">
+					<reportElement x="0" y="2" width="214" height="23" uuid="138e1ae7-54c4-439f-a272-796f2db92ea9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Medico: " + $F{medico_MED_Nombres}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="hojaresultados_HR_FechaEmision">
+		<groupExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<textField evaluationTime="Group" evaluationGroup="hojaresultados_HR_FechaEmision" pattern="dd/MM/yyyy">
+					<reportElement x="472" y="2" width="100" height="20" uuid="db35048a-783b-4221-b8b8-c02b7d1f2321"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="44">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="44" uuid="8eeac6d2-19e3-40cc-b5eb-a5e761c62d44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="24" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Historico de Medicos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="356" y="3" width="100" height="23" uuid="60b2571c-e095-4c68-ad79-8cb4c9aa3603"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaIni}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="472" y="3" width="100" height="23" uuid="7ddf4dcb-db2d-4967-897e-0ebe26b158ff"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="4"/>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="246" y="0" width="128" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="933cde56-0081-4e5e-bba9-93ce4556938a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_PAC_FechaNac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="0" width="121" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="966867ff-606c-4815-b1da-f849a5fc02aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_PAC_Edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="202" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="b734106a-67fe-4aec-b6ca-c9f51836dae7"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_PAC_Nombres}+" "+$F{paciente_PAC_ApePat}+" "+$F{paciente_PAC_ApeMat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="496" y="0" width="76" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="5e39e3e7-a2d0-437a-bfb5-1d3b50d778d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_PAC_Sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="42" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="b770b09d-59cc-40bd-8654-b1812ca6e55c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="1b5019bf-fbe3-4ab0-940a-b52ba31d5a89"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="42" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="b5bba46a-71b9-4e46-b2fd-3f607450710b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="245" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="05f1308b-ec45-4d64-a741-f3bacec87517"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="495" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="f753af69-5137-486e-8622-b14fd348c058"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="373" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision" uuid="eece73ea-2bda-4b7c-bc50-a7abf74d653f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="571" height="21" uuid="e39c7441-3d61-42ea-815d-2f164e53dd7c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="3"/>
+	</pageFooter>
+	<summary>
+		<band height="3"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperPrint xmlns="http://jasperreports.sourceforge.net/jasperreports/print" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/print http://jasperreports.sourceforge.net/xsd/jasperprint.xsd" name="RepQuimicaSang" pageWidth="611" pageHeight="433" topMargin="0" leftMargin="0" bottomMargin="0" rightMargin="0" locale="es_BO" timezone="America/La_Paz">
+	<property name="net.sf.jasperreports.export.xml.start.page.index" value="0"/>
+	<property name="net.sf.jasperreports.export.xml.end.page.index" value="0"/>
+	<property name="net.sf.jasperreports.export.xml.page.count" value="1"/>
+	<origin band="pageHeader"/>
+	<origin band="columnHeader"/>
+	<origin band="detail"/>
+	<origin band="columnFooter"/>
+	<origin band="pageFooter"/>
+	<page>
+		<text textHeight="12.648926" lineSpacingFactor="1.1499023" leadingOffset="-2.151123">
+			<reportElement uuid="583123c4-b56e-4179-97da-234ec4cd443f" x="73" y="19" width="149" height="15" origin="0" srcId="1" printId="1"/>
+			<font fontName="Arial" size="11"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[Ruiz Lozano Talon]]></textContent>
+		</text>
+		<text textHeight="12.648926" lineSpacingFactor="1.1499023" leadingOffset="-2.151123">
+			<reportElement uuid="469622e2-dec2-4481-963a-ca30b3fb3272" x="73" y="47" width="149" height="15" origin="0" srcId="2" printId="1"/>
+			<font fontName="Arial" size="11"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[A Quien Corresponda]]></textContent>
+		</text>
+		<text textHeight="12.648926" lineSpacingFactor="1.1499023" leadingOffset="-2.151123">
+			<reportElement uuid="5a8557e6-eb4c-4e69-97e4-6f61b737a9cd" x="313" y="47" width="58" height="15" origin="0" srcId="3" printId="1"/>
+			<font fontName="Arial" size="11"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[47 años]]></textContent>
+		</text>
+		<text textHeight="12.648926" lineSpacingFactor="1.1499023" leadingOffset="-2.151123">
+			<reportElement uuid="68c7c62b-ccec-4d45-959b-d606cd27a270" x="313" y="18" width="70" height="16" origin="0" srcId="4" printId="1"/>
+			<font fontName="Arial" size="11"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[2023-07-21]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="389b5d42-bcc6-4245-ae18-13b1e474d615" x="263" y="96" width="39" height="13" origin="2" srcId="5" printId="1"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[mg/dl]]></textContent>
+		</text>
+		<text textAlignment="Right" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="59a297a2-b915-46f3-923c-e8365fd1d7e4" x="227" y="96" width="31" height="13" origin="2" srcId="6" printId="1"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[< 0,2]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="2da4c6b4-1725-4bb5-ace2-4b246c2391b2" x="36" y="96" width="90" height="13" origin="2" srcId="7" printId="1"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[Bilirrubinas Directa]]></textContent>
+		</text>
+		<text textAlignment="Center" verticalAlignment="Middle" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="44c12a25-b6fd-4e65-bff0-79d82df589ca" x="143" y="96" width="63" height="13" origin="2" srcId="8" printId="1"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[0.6]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="389b5d42-bcc6-4245-ae18-13b1e474d615" x="263" y="112" width="39" height="13" origin="2" srcId="5" printId="2"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[mg/dl]]></textContent>
+		</text>
+		<text textAlignment="Right" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="59a297a2-b915-46f3-923c-e8365fd1d7e4" x="227" y="112" width="31" height="13" origin="2" srcId="6" printId="2"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[< 0,8]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="2da4c6b4-1725-4bb5-ace2-4b246c2391b2" x="36" y="112" width="90" height="13" origin="2" srcId="7" printId="2"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[Bilirrubinas ]]></textContent>
+		</text>
+		<text textAlignment="Center" verticalAlignment="Middle" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="44c12a25-b6fd-4e65-bff0-79d82df589ca" x="143" y="112" width="63" height="13" origin="2" srcId="8" printId="2"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[0.6]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="389b5d42-bcc6-4245-ae18-13b1e474d615" x="263" y="128" width="39" height="13" origin="2" srcId="5" printId="3"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[mg/dl]]></textContent>
+		</text>
+		<text textAlignment="Right" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="59a297a2-b915-46f3-923c-e8365fd1d7e4" x="227" y="128" width="31" height="13" origin="2" srcId="6" printId="3"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[< 1,2]]></textContent>
+		</text>
+		<text textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="2da4c6b4-1725-4bb5-ace2-4b246c2391b2" x="36" y="128" width="90" height="13" origin="2" srcId="7" printId="3"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[Bilirrubinas Total]]></textContent>
+		</text>
+		<text textAlignment="Center" verticalAlignment="Middle" textHeight="11.499023" lineSpacingFactor="1.1499023" leadingOffset="-1.9555664">
+			<reportElement uuid="44c12a25-b6fd-4e65-bff0-79d82df589ca" x="143" y="128" width="63" height="13" origin="2" srcId="8" printId="3"/>
+			<font fontName="Arial" size="10"/>
+			<paragraph lineSpacing="Single"/>
+			<textContent><![CDATA[1.2]]></textContent>
+		</text>
+		<frame>
+			<reportElement uuid="0d5cde7b-c346-414b-ad50-5a86587e0818" mode="Transparent" x="-10" y="393" width="621" height="40" backcolor="#000099" origin="4" srcId="9" printId="1"/>
+		</frame>
+	</page>
+</jasperPrint>

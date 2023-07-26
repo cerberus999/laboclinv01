@@ -9,7 +9,10 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import laboclinv01.SqlConector;
 
@@ -19,13 +22,16 @@ import laboclinv01.SqlConector;
  */
 public class HojasResultados300 extends javax.swing.JFrame {
 
+    Resultados400 r4;
+    private static Vector<String> prep;
     private static int ID;
-    
+    int idSelected;
     /**
      * Creates new form Resultados300
      * @param identificador
      */
     public HojasResultados300(int identificador) {
+        
         HojasResultados300.ID = identificador;
         initComponents();
         getDates();
@@ -40,14 +46,14 @@ public class HojasResultados300 extends javax.swing.JFrame {
             dtm.removeRow(0);
             aux--;
         }
-        String query = "SELECT HR_FechaEmision, MED_Nombres FROM medico AS m," + 
+        String query = "SELECT HR_ID, HR_FechaEmision, MED_Nombres FROM medico AS m," + 
                 " paciente AS p, hojaresultados AS hr WHERE p.PAC_ID = hr.PAC_ID " + 
                 "AND hr.MED_ID = m.MED_ID AND p.PAC_ID = " + ID ;
         SqlConector.conectar();
         try{
             ResultSet rs = SqlConector.executeQuery(query);
             while(rs.next()){
-                String[] data = new String[2];
+                String[] data = new String[3];
                 for(int i = 0; i < dtm.getColumnCount();i++){
                     data[i] = rs.getString(i+1);
                     
@@ -95,7 +101,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         addRes = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
-        editRes = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -160,11 +166,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Fecha Examenes", "Medico"
+                "ID", "Fecha Examenes", "Medico"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -173,10 +179,16 @@ public class HojasResultados300 extends javax.swing.JFrame {
         });
         AnalisysTable.setRowHeight(19);
         AnalisysTable.getTableHeader().setReorderingAllowed(false);
+        AnalisysTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AnalisysTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(AnalisysTable);
         if (AnalisysTable.getColumnModel().getColumnCount() > 0) {
-            AnalisysTable.getColumnModel().getColumn(0).setResizable(false);
+            AnalisysTable.getColumnModel().getColumn(0).setMaxWidth(80);
             AnalisysTable.getColumnModel().getColumn(1).setResizable(false);
+            AnalisysTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         addRes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -199,11 +211,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
             }
         });
 
-        editRes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        editRes.setText("Editar");
-        editRes.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEdit.setText("Editar");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editResActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -213,8 +225,8 @@ public class HojasResultados300 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(35, 35, 35)
@@ -230,11 +242,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
                         .addComponent(forwBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,11 +265,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(addRes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(editRes)))
+                                .addComponent(btnEdit)))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,8 +315,8 @@ public class HojasResultados300 extends javax.swing.JFrame {
 //        mostrar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void addResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResActionPerformed
-        Resultados400 r4 = new Resultados400(ID);
+    
+    private void addSetVisibleAtClose(){
         r4.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent we) {
@@ -336,6 +348,12 @@ public class HojasResultados300 extends javax.swing.JFrame {
             public void windowDeactivated(WindowEvent we) {
             }
         });
+    }
+    
+    private void addResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResActionPerformed
+        prep = new Vector();
+        r4 = new Resultados400(ID,prep,new ArrayList<>());
+        addSetVisibleAtClose();
         r4.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_addResActionPerformed
@@ -344,9 +362,40 @@ public class HojasResultados300 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void editResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editResActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        ArrayList<String[]> dataRes = new ArrayList();
+        String query = "SELECT a.ANA_ID, a.ANA_Nombre, RES_Valor, ANA_TipoMuestra, ANA_ValoresRef, ANA_UnidadMed "+
+                "from analito AS a, Resultado as r WHERE a.ANA_ID = r.ANA_ID AND r.HR_ID = "+ idSelected;
+        SqlConector.conectar();
+        ResultSet rs;
+        String[] aux;
+        try{
+            rs = SqlConector.executeQuery(query);
+            while(rs.next()){
+                aux = new String[6];
+                for(int i=0;i<6;i++){
+                    aux[i] = rs.getString(i+1);
+                }
+                dataRes.add(aux);
+            }
+            SqlConector.closeConn();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        r4 = new Resultados400(ID,prep, dataRes);
+        addSetVisibleAtClose();
+        r4.setVisible(true);
         
-    }//GEN-LAST:event_editResActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
+    /*Send the date and name of the Medic
+    */
+    private void AnalisysTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnalisysTableMouseClicked
+        DefaultTableModel def = (DefaultTableModel) AnalisysTable.getModel();
+        JTable target = (JTable) evt.getSource();
+        int row = target.getSelectedRow();
+        prep = (Vector) def.getDataVector().elementAt(row);
+        idSelected = Integer.parseInt( (String) def.getValueAt(row, 0));
+    }//GEN-LAST:event_AnalisysTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -384,7 +433,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
     private javax.swing.JButton addRes;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton editRes;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton forwBtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RepQuimicaSang" language="groovy" pageWidth="611" pageHeight="433" columnWidth="611" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.1000000000000056"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Quim">
+		<queryString>
+			<![CDATA[SELECT
+     hojaresultados.`PAC_ID` AS hojaresultados_PAC_ID,
+     hojaresultados.`MED_ID` AS hojaresultados_MED_ID,
+     medico.`MED_Nombres` AS medico_MED_Nombres,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     resultado.`RES_Valor` AS resultado_RES_Valor,
+     resultado.`ANA_ID` AS resultado_ANA_ID,
+     resultado.`HR_ID` AS resultado_HR_ID,
+     analito.`ANA_Nombre` AS analito_ANA_Nombre,
+     analito.`ANA_TipoMuestra` AS analito_ANA_TipoMuestra,
+     analito.`ANA_ValoresRef` AS analito_ANA_ValoresRef,
+     analito.`ANA_UnidadMed` AS analito_ANA_UnidadMed,
+     hojaresultados.`HR_ID` AS hojaresultados_HR_ID,
+     analito.`ANA_ID` AS analito_ANA_ID,
+     medico.`MED_ID` AS medico_MED_ID,
+     paciente.`PAC_ID` AS paciente_PAC_ID,
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     paciente.`PAC_Sexo` AS paciente_PAC_Sexo
+FROM
+     `medico` medico INNER JOIN `hojaresultados` hojaresultados ON medico.`MED_ID` = hojaresultados.`MED_ID`
+     INNER JOIN `paciente` paciente ON hojaresultados.`PAC_ID` = paciente.`PAC_ID`
+     INNER JOIN `resultado` resultado ON hojaresultados.`HR_ID` = resultado.`HR_ID`
+     INNER JOIN `analito` analito ON resultado.`ANA_ID` = analito.`ANA_ID`
+WHERE
+     hojaresultados.`HR_ID`  = 3]]>
+		</queryString>
+		<field name="medico_MED_Nombres" class="java.lang.String"/>
+		<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+		<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+		<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+		<field name="resultado_RES_Valor" class="java.lang.String"/>
+		<field name="analito_ANA_Nombre" class="java.lang.String"/>
+		<field name="analito_ANA_TipoMuestra" class="java.lang.String"/>
+		<field name="analito_ANA_ValoresRef" class="java.lang.String"/>
+		<field name="analito_ANA_UnidadMed" class="java.lang.String"/>
+		<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+		<field name="paciente_PAC_Sexo" class="java.lang.String"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT
+     hojaresultados.`PAC_ID` AS hojaresultados_PAC_ID,
+     hojaresultados.`MED_ID` AS hojaresultados_MED_ID,
+     medico.`MED_Nombres` AS medico_MED_Nombres,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     resultado.`RES_Valor` AS resultado_RES_Valor,
+     resultado.`ANA_ID` AS resultado_ANA_ID,
+     resultado.`HR_ID` AS resultado_HR_ID,
+     analito.`ANA_Nombre` AS analito_ANA_Nombre,
+     analito.`ANA_TipoMuestra` AS analito_ANA_TipoMuestra,
+     analito.`ANA_ValoresRef` AS analito_ANA_ValoresRef,
+     analito.`ANA_UnidadMed` AS analito_ANA_UnidadMed,
+     hojaresultados.`HR_ID` AS hojaresultados_HR_ID,
+     analito.`ANA_ID` AS analito_ANA_ID,
+     medico.`MED_ID` AS medico_MED_ID,
+     paciente.`PAC_ID` AS paciente_PAC_ID,
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     paciente.`PAC_Edad` AS paciente_PAC_Edad
+FROM
+     `medico` medico INNER JOIN `hojaresultados` hojaresultados ON medico.`MED_ID` = hojaresultados.`MED_ID`
+     INNER JOIN `paciente` paciente ON hojaresultados.`PAC_ID` = paciente.`PAC_ID`
+     INNER JOIN `resultado` resultado ON hojaresultados.`HR_ID` = resultado.`HR_ID`
+     INNER JOIN `analito` analito ON resultado.`ANA_ID` = analito.`ANA_ID`
+WHERE
+     hojaresultados.`HR_ID` = 3]]>
+	</queryString>
+	<field name="hojaresultados_PAC_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_MED_ID" class="java.lang.Integer"/>
+	<field name="medico_MED_Nombres" class="java.lang.String"/>
+	<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+	<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+	<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+	<field name="resultado_RES_Valor" class="java.lang.String"/>
+	<field name="resultado_ANA_ID" class="java.lang.Integer"/>
+	<field name="resultado_HR_ID" class="java.lang.Integer"/>
+	<field name="analito_ANA_Nombre" class="java.lang.String"/>
+	<field name="analito_ANA_TipoMuestra" class="java.lang.String"/>
+	<field name="analito_ANA_ValoresRef" class="java.lang.String"/>
+	<field name="analito_ANA_UnidadMed" class="java.lang.String"/>
+	<field name="hojaresultados_HR_ID" class="java.lang.Integer"/>
+	<field name="analito_ANA_ID" class="java.lang.Integer"/>
+	<field name="medico_MED_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+	<field name="paciente_PAC_Edad" class="java.lang.String"/>
+	<pageHeader>
+		<band height="67">
+			<textField>
+				<reportElement x="73" y="19" width="149" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Nombres} + " " + $F{paciente_PAC_ApePat} + " " + $F{paciente_PAC_ApeMat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="47" width="149" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{medico_MED_Nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="47" width="58" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="18" width="70" height="16"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hojaresultados_HR_FechaEmision}.toString()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29"/>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<elementGroup>
+				<textField>
+					<reportElement x="263" y="0" width="39" height="13"/>
+					<textElement lineSpacing="Single">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{analito_ANA_UnidadMed}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="227" y="0" width="31" height="13"/>
+					<textElement textAlignment="Right" lineSpacing="Single">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{analito_ANA_ValoresRef}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="36" y="0" width="90" height="13"/>
+					<textElement lineSpacing="Single">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{analito_ANA_Nombre}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="143" y="0" width="63" height="13"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font fontName="Arial" size="10"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{resultado_RES_Valor}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="130">
+			<frame>
+				<reportElement mode="Transparent" x="-10" y="90" width="621" height="40" backcolor="#000099"/>
+			</frame>
+			<image scaleImage="FillFrame">
+				<reportElement x="36" y="3" width="87" height="87"/>
+				<imageExpression class="java.awt.Image"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+new com.google.zxing.qrcode.QRCodeWriter().encode(
+"https://sipro01.firebaseapp.com/",
+com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

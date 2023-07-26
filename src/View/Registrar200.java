@@ -10,6 +10,10 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
 
@@ -29,14 +33,15 @@ public class Registrar200 extends javax.swing.JFrame {
         btnSaveReg.setMnemonic(KeyEvent.VK_S);
         btnCancelReg.setMnemonic(KeyEvent.VK_C);
         Registrar200.data = patientData;
-        jTextField1.setText(data[0]);
-        jTextField2.setText(data[1]);
-        jTextField3.setText(data[2]);
-        jTextField4.setText(data[3]);
-        jTextField5.setText(data[4]);
-        jDateChooser1.setDate(Date.valueOf(data[5]));
-        jTextField6.setText(data[6]);
-        jTextField7.setText(data[7]);
+        txtID.setText(data[0]);//ID
+        txtCI.setText(data[1]);//CI
+        txtNombres.setText(data[2]);//apemat
+        txtApePat.setText(data[3]);//Nombres
+        txtApeMat.setText(data[4]);//apepat
+        if(data[5] != null)
+            dateFechaNac.setDate((java.util.Date)Date.valueOf(data[5]));
+        txtEdad.setText(data[6]);//FechaN
+        txtSexo.setText(data[7]);//sexo
     }
 
     /**
@@ -52,22 +57,23 @@ public class Registrar200 extends javax.swing.JFrame {
         btnCancelReg = new javax.swing.JButton();
         btnSaveReg = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCI = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtApePat = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtApeMat = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        txtNombres = new javax.swing.JTextField();
+        dateFechaNac = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Laboratorio - LABOCLIN");
@@ -94,38 +100,33 @@ public class Registrar200 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextField1.setEnabled(false);
+        txtID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtID.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtID.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Apellido Paterno: ");
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCI.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Apellido Materno:");
 
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApePat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Nombres:");
 
-        jTextField4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApeMat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Edad:");
 
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
-        jDateChooser1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        jDateChooser1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jDateChooser1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jDateChooser1FocusLost(evt);
-            }
-        });
+        dateFechaNac.setDateFormatString("dd/MM/yyyy");
+        dateFechaNac.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dateFechaNac.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Sexo: ");
@@ -133,23 +134,32 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("ID:");
 
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEdad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEdad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEdadFocusGained(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Fecha de Nacimiento:");
 
-        jTextField7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField7.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtSexo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("CI");
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Registro de Pacientes");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,15 +169,15 @@ public class Registrar200 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(593, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombres)
+                            .addComponent(dateFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtApePat, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,46 +185,52 @@ public class Registrar200 extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(89, 89, 89))))
+                            .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(113, 113, 113))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApePat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
+                        .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7))
+                    .addComponent(dateFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,34 +274,41 @@ public class Registrar200 extends javax.swing.JFrame {
         String query;
         PreparedStatement pstmt;
         String mess;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String sendDate = sdf.format(dateFechaNac.getDate().getTime());
+                
         try{
-            if(jTextField1.getText().isEmpty()){
+            if(txtID.getText().isEmpty()){
                 long aux = System.currentTimeMillis();
                 //java.sql.Date date = new Date(aux);
-                query = "INSERT INTO paciente values (0,?,?,?,?,?,0,?)";
+                query = "INSERT INTO paciente values (0,?,?,?,?,?,?,?,0)";
                 pstmt = con.prepareStatement(query);
-                pstmt.setString(1, jTextField2.getText());
-                pstmt.setString(2, jTextField3.getText());
-                pstmt.setString(3, jTextField4.getText());
-                pstmt.setString(4, jTextField5.getText());
-                pstmt.setString(5, jTextField6.getText());
+                pstmt.setString(1, txtCI.getText());
+                pstmt.setString(2, txtNombres.getText());
+                pstmt.setString(3, txtApePat.getText());
+                pstmt.setString(4, txtApeMat.getText());
+                pstmt.setString(5, sendDate);
+                pstmt.setString(6, txtEdad.getText());
+                pstmt.setString(7, txtSexo.getText());
                 
                 //pstmt.setDate(6, date.);
                 mess = "Paciente Registrado";
             }else{
-                query = "UPDATE paciente SET ApePat_PAC = ?, ApeMat_PAC = ?, Nombres_PAC = ?," +
-                        "Edad_PAC = ?, Genero_PAC = ? WHERE ID_PAC = ? AND oculto = 0";
+                query = "UPDATE paciente SET PAC_CI = ?, PAC_Nombres = ?,PAC_ApePat = ?, PAC_ApeMat = ?," +
+                        "PAC_FechaNac = ?, PAC_Edad = ?, PAC_Sexo = ? WHERE PAC_ID = ? AND PAC_oculto = 0";
                 pstmt = con.prepareStatement(query);
-                pstmt.setString(1, jTextField2.getText());
-                pstmt.setString(2, jTextField3.getText());
-                pstmt.setString(3, jTextField4.getText());
-                pstmt.setString(4, jTextField5.getText());
-                pstmt.setString(5, jTextField6.getText());
-                pstmt.setInt(6, Integer.parseInt(jTextField1.getText()));
+                pstmt.setString(1, txtCI.getText());
+                pstmt.setString(2, txtNombres.getText());
+                pstmt.setString(3, txtApePat.getText());
+                pstmt.setString(4, txtApeMat.getText());
+                pstmt.setString(5, sendDate);
+                pstmt.setString(6, txtEdad.getText());
+                pstmt.setString(7, txtSexo.getText());
+                pstmt.setInt(8, Integer.parseInt(txtID.getText()));
                 mess = "Datos actualizados";
             }
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, mess);
+            JOptionPane.showMessageDialog(this, mess);
             con.close();
             this.dispose();
         }catch(SQLException e){
@@ -293,22 +316,21 @@ public class Registrar200 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveRegActionPerformed
 
-    private void jDateChooser1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooser1FocusLost
-        Date aux = (Date) jDateChooser1.getDate();
-        jTextField6.setText(calcularEdad(aux));
-    }//GEN-LAST:event_jDateChooser1FocusLost
+    private void txtEdadFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEdadFocusGained
+        java.util.Date birth = dateFechaNac.getDate();
+        if(birth != null){
+            LocalDate ldb = birth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate ldn = LocalDate.now();
+            Period p = Period.between(ldb, ldn);
+            int aux = p.getYears();
+            if(aux < 1){
+                String val = "" + p.getMonths() + " meses, " + p.getDays() + " días";
+                txtEdad.setText(val);
+            }else
+                txtEdad.setText("" + aux + " años");
+        }
+    }//GEN-LAST:event_txtEdadFocusGained
 
-    
-    private String calcularEdad(Date birthDate){
-        String res = "";
-        Date now = new Date(System.currentTimeMillis());
-        try{
-        res = "" +birthDate.compareTo(now);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }   
-        return res;
-    }
     /**
      * @param args the command line arguments
      */
@@ -343,7 +365,7 @@ public class Registrar200 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelReg;
     private javax.swing.JButton btnSaveReg;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser dateFechaNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -352,14 +374,15 @@ public class Registrar200 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private com.toedter.components.JSpinField jSpinField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtApeMat;
+    private javax.swing.JTextField txtApePat;
+    private javax.swing.JTextField txtCI;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtSexo;
     // End of variables declaration//GEN-END:variables
 }
