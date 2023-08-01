@@ -133,11 +133,10 @@ FROM
 FROM
      `paciente` paciente INNER JOIN `hojaresultados` hojaresultados ON paciente.`PAC_ID` = hojaresultados.`PAC_ID`
 WHERE 
- 	HR_FechaEmision BETWEEN $P{FechaIni} AND $P{FechaFin}
-GROUP BY 
-	paciente_PAC_ID
-ORDER BY 
-	HR_FechaEmision ASC]]>
+paciente.`PAC_oculto` = 1 AND
+HR_FechaEmision BETWEEN $P{FechaIni} AND $P{FechaFin}
+	
+]]>
 	</queryString>
 	<field name="hojaresultados_HR_ID" class="java.lang.Integer"/>
 	<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
@@ -233,7 +232,7 @@ ORDER BY
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="SansSerif" size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Historico de Pacientes]]></text>
+				<text><![CDATA[Listado de pacientes desactivados]]></text>
 			</staticText>
 		</band>
 	</title>

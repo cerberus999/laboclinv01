@@ -240,7 +240,7 @@ ORDER BY
 	<pageHeader>
 		<band height="26">
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="418" y="0" width="65" height="20"/>
+				<reportElement x="430" y="0" width="65" height="20"/>
 				<textElement lineSpacing="Single">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -333,17 +333,9 @@ ORDER BY
 		<band height="6"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="21"/>
+		<band height="2"/>
 	</pageFooter>
 	<summary>
-		<band height="127">
-			<image scaleImage="FillFrame">
-				<reportElement x="0" y="0" width="129" height="127"/>
-				<imageExpression class="java.awt.Image"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
-new com.google.zxing.qrcode.QRCodeWriter().encode(
-"https://sipro01.firebaseapp.com/",
-com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
-			</image>
-		</band>
+		<band height="2"/>
 	</summary>
 </jasperReport>

@@ -174,7 +174,7 @@ WHERE
 				<reportElement x="36" y="3" width="87" height="87"/>
 				<imageExpression class="java.awt.Image"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
 new com.google.zxing.qrcode.QRCodeWriter().encode(
-"https://sipro01.firebaseapp.com/",
+"Estamos",
 com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
 			</image>
 		</band>
