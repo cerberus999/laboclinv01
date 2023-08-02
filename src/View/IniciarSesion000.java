@@ -127,6 +127,7 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //SQL INJECTION VULNERABLE
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         String query;
         SqlConector.conectar();
