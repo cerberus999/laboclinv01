@@ -72,7 +72,7 @@ FROM
      INNER JOIN `resultado` resultado ON hojaresultados.`HR_ID` = resultado.`HR_ID`
      INNER JOIN `analito` analito ON resultado.`ANA_ID` = analito.`ANA_ID`
 WHERE
-     hojaresultados.`HR_ID` = 3]]>
+     hojaresultados.`HR_ID` = 20]]>
 	</queryString>
 	<field name="hojaresultados_PAC_ID" class="java.lang.Integer"/>
 	<field name="hojaresultados_MED_ID" class="java.lang.Integer"/>

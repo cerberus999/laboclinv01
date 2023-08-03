@@ -5,10 +5,13 @@
  */
 package View;
 
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import laboclinv01.SqlConector;
+import laboclinv01.JTextFieldControl;
 
 /**
  *
@@ -16,7 +19,7 @@ import laboclinv01.SqlConector;
  */
 public class IniciarSesion000 extends javax.swing.JFrame {
 
-    Principal100 p1 = new Principal100();
+    Principal100 p1;
     /**
      * Creates new form Session
      */
@@ -54,6 +57,11 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         jLabel2.setText("Password:");
 
         txtUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUserKeyTyped(evt);
+            }
+        });
 
         btnConfirm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnConfirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/icons8-done-48.png"))); // NOI18N
@@ -72,6 +80,11 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         });
 
         txtPass.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPassKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,17 +144,24 @@ public class IniciarSesion000 extends javax.swing.JFrame {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         String query;
         SqlConector.conectar();
-        query = "SELECT * FROM usuario WHERE USR_Login = '" + txtUser.getText() +
-                "' AND USR_Password = '"+new String(txtPass.getPassword()) +"' AND USR_Estado = 0";
+        query = "SELECT pu.PER_ID FROM usuario u, permisos_usuario "+
+                "pu WHERE USR_Login = '"+txtUser.getText()+"' AND USR_Password = '"+new String(txtPass.getPassword())+"' "+
+                "AND USR_Estado = 0 AND pu.USR_ID = u.USR_ID AND pu.PU_Valor = 1";
         //JOptionPane.showMessageDialog(this, new String(txtPass.getPassword()));
         try{
             ResultSet rs = SqlConector.executeQuery(query);
+            int[] perm = new int[4];
             if(rs.next()){
+                rs.previous();
+                while(rs.next())
+                    perm[rs.getInt(1)-1] = 1;              
+                
+                p1 = new Principal100(perm);
                 p1.setVisible(true);
                 this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(this, "Usuario incorrecto");
             }
+            else    
+                JOptionPane.showMessageDialog(this, "Usuario incorrecto");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -151,6 +171,14 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void txtUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtUser, 50);
+    }//GEN-LAST:event_txtUserKeyTyped
+
+    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtPass, 50);
+    }//GEN-LAST:event_txtPassKeyTyped
+    
     /**
      * @param args the command line arguments
      */

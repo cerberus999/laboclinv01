@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import laboclinv01.JTextFieldControl;
 import laboclinv01.SqlConector;
 import laboclinv01.TextAutoCompleterP;
 
@@ -67,12 +68,11 @@ public class Resultados400 extends javax.swing.JFrame {
 //                    lastMed = aux;
 //                }
     private void initUI(){
-        String[] exams;
-        while(!data.isEmpty()){
-            exams = data.remove(0);
-            ((DefaultTableModel)jTable1.getModel()).addRow(exams);
-        }
         setName();
+        if(!data.isEmpty())
+            for(String[] a: data)
+                ((DefaultTableModel)jTable1.getModel()).addRow(a);
+
         if(prep.isEmpty()){
             textDate.setText(new Date(System.currentTimeMillis()).toString());
         }else{
@@ -90,7 +90,8 @@ public class Resultados400 extends javax.swing.JFrame {
         try{
             query = "SELECT * FROM medico ORDER BY MED_Nombres";
             rs = SqlConector.executeQuery(query);
-            autoMedic.setMode(0);while(rs.next()){
+            autoMedic.setMode(0);
+            while(rs.next()){
                 String[] aux = new String[2];
                 for(int i=0 ; i<2; i++){
                     aux[i] = rs.getString(i+1);
@@ -259,6 +260,11 @@ public class Resultados400 extends javax.swing.JFrame {
         jLabel5.setText("Medico:");
 
         textMed.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        textMed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textMedKeyTyped(evt);
+            }
+        });
 
         txtExam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
@@ -468,6 +474,7 @@ public class Resultados400 extends javax.swing.JFrame {
             }
             SqlConector.closeConn();
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito!");
+            this.dispose();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -476,6 +483,10 @@ public class Resultados400 extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         JOptionPane.showMessageDialog(this, autoMedic.getMode());
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void textMedKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textMedKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, textMed, 80);
+    }//GEN-LAST:event_textMedKeyTyped
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,7 @@
  */
 package View;
 
+import laboclinv01.CustomCellEditor;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,6 +25,7 @@ import laboclinv01.SqlConector;
  * @author Lenovo
  */
 public class Principal100 extends javax.swing.JFrame {
+    private int[] permisos = {0,0,0};
     private HojasResultados300 res;
     private Registrar200 edit;
     private int idSelected;
@@ -36,19 +38,34 @@ public class Principal100 extends javax.swing.JFrame {
 
     /**
      * Creates new form Init
+     * @param permisos
      */
+    public Principal100(int[] permisos){
+        this.permisos = permisos;
+        initComponents();
+        addMnemonics();
+        mostrar();
+        btnUsrs.setVisible(false);
+        btnUsrs1.setVisible(false);
+        if(this.permisos[3] == 1){
+            btnUsrs.setVisible(true);
+        }
+        if(this.permisos[0] == 1){
+            btnUsrs1.setVisible(true);
+        }
+        patientsTable.changeSelection(0, 0, false, false);
+        idSelected = Integer.parseInt((String) patientsTable.getValueAt(0, 0));
+    }
+    
     public Principal100() {
         initComponents();
-        setResizable(false);
-        btnAdd.setMnemonic(KeyEvent.VK_A);
-        btnDel.setMnemonic(KeyEvent.VK_L);
-        btnEdit.setMnemonic(KeyEvent.VK_E);
-        btnSearch.setMnemonic(KeyEvent.VK_B);
+        addMnemonics();
+        
         mostrar();
         patientsTable.changeSelection(0, 0, false, false);
         idSelected = Integer.parseInt((String) patientsTable.getValueAt(0, 0));
     }
-
+    
     private void mostrar() {
         
         String query;
@@ -94,6 +111,8 @@ public class Principal100 extends javax.swing.JFrame {
         searchTable = new javax.swing.JTable();
         clear = new javax.swing.JButton();
         btnRes = new javax.swing.JButton();
+        btnUsrs = new javax.swing.JButton();
+        btnUsrs1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Laboratorio - LABOCLIN");
@@ -279,12 +298,14 @@ public class Principal100 extends javax.swing.JFrame {
             searchTable.getColumnModel().getColumn(0).setPreferredWidth(15);
             searchTable.getColumnModel().getColumn(1).setResizable(false);
             searchTable.getColumnModel().getColumn(2).setResizable(false);
+            searchTable.getColumnModel().getColumn(2).setCellEditor(null);
             searchTable.getColumnModel().getColumn(3).setResizable(false);
             searchTable.getColumnModel().getColumn(4).setResizable(false);
             searchTable.getColumnModel().getColumn(5).setResizable(false);
             searchTable.getColumnModel().getColumn(6).setResizable(false);
             searchTable.getColumnModel().getColumn(7).setResizable(false);
             searchTable.getColumnModel().getColumn(7).setPreferredWidth(20);
+            searchTable.getColumnModel().getColumn(7).setCellEditor(null);
         }
 
         clear.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -300,6 +321,22 @@ public class Principal100 extends javax.swing.JFrame {
         btnRes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResActionPerformed(evt);
+            }
+        });
+
+        btnUsrs.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnUsrs.setText("Usuarios");
+        btnUsrs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsrsActionPerformed(evt);
+            }
+        });
+
+        btnUsrs1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnUsrs1.setText("Reportes");
+        btnUsrs1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsrs1ActionPerformed(evt);
             }
         });
 
@@ -332,7 +369,9 @@ public class Principal100 extends javax.swing.JFrame {
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUsrs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUsrs1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -371,6 +410,10 @@ public class Principal100 extends javax.swing.JFrame {
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
                         .addComponent(btnRes)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUsrs)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUsrs1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir)))
                 .addContainerGap())
@@ -529,7 +572,78 @@ public class Principal100 extends javax.swing.JFrame {
         res.setVisible(true);
     }//GEN-LAST:event_btnResActionPerformed
 
-    
+    private void btnUsrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsrsActionPerformed
+        Usuarios usrs = new Usuarios();
+        usrs.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent we) {
+                setVisible(true);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) {
+            }
+        });
+        usrs.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnUsrsActionPerformed
+
+    private void btnUsrs1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsrs1ActionPerformed
+        Reportes500 rep = new Reportes500();
+        rep.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent we) {
+                setVisible(true);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) {
+            }
+        });
+        rep.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnUsrs1ActionPerformed
+
     private void resSetVisbleAtClose(){
         res.addWindowListener(new WindowListener() {
             @Override
@@ -676,6 +790,8 @@ public class Principal100 extends javax.swing.JFrame {
     private javax.swing.JButton btnRes;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUsrs;
+    private javax.swing.JButton btnUsrs1;
     private javax.swing.JButton clear;
     private javax.swing.JButton forwBtn;
     private javax.swing.JButton jButton2;
@@ -689,4 +805,11 @@ public class Principal100 extends javax.swing.JFrame {
     private javax.swing.JTable patientsTable;
     private javax.swing.JTable searchTable;
     // End of variables declaration//GEN-END:variables
+
+    private void addMnemonics() {
+        btnAdd.setMnemonic(KeyEvent.VK_A);
+        btnDel.setMnemonic(KeyEvent.VK_L);
+        btnEdit.setMnemonic(KeyEvent.VK_E);
+        btnSearch.setMnemonic(KeyEvent.VK_B);
+    }
 }

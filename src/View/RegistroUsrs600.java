@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
+import laboclinv01.JTextFieldControl;
 
 /**
  *
@@ -83,8 +84,14 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
     }
     
     private void recoverPermsDB(){
+        String query;
+        if(ID != -1){
+            query = "SELECT p.PER_ID, p.PER_Nombre FROM permisos_usuario pu, permiso p WHERE "+
+                "pu.PER_ID = p.PER_ID AND pu.PU_Valor = 0 AND USR_ID = " + ID;
+        }else{
+            query = "SELECT * FROM permiso";
+        }
         
-        String query = "SELECT * FROM permiso";
         ResultSet rs;
         SqlConector.conectar();
         try{
@@ -94,6 +101,28 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
                 for(int i=0;i<2;i++)
                     aux[i] = rs.getString(i+1);
                 perms.add(aux);
+            }
+            if(ID != -1){
+                query = "SELECT * FROM permiso WHERE PER_ID not in (SELECT pu.PER_ID FROM permisos_usuario pu, permiso p WHERE p.PER_ID = pu.PER_ID AND pu.USR_ID = 3)";
+                rs = SqlConector.executeQuery(query);
+                while(rs.next()){
+                    String[] aux = new String[2];
+                    for(int i=0;i<2;i++){
+                        aux[i] = rs.getString(i+1);
+                    }
+                    perms.add(aux);
+                }
+                
+                query = "SELECT p.PER_ID, p.PER_Nombre FROM permisos_usuario pu, permiso p WHERE "+
+                "pu.PER_ID = p.PER_ID AND pu.PU_Valor = 1 AND USR_ID = " + ID;
+                rs = SqlConector.executeQuery(query);
+                while(rs.next()){
+                    String[] aux = new String[2];
+                    for(int i=0;i<2;i++){
+                        aux[i] = rs.getString(i+1);
+                    }
+                    permsAccept.add(aux);
+                }
             }
             SqlConector.closeConn();
         }catch(SQLException e){
@@ -147,6 +176,11 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         jLabel1.setText("Registro de Usuarios");
 
         txtLogin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLoginKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Login:");
@@ -155,6 +189,11 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         jLabel3.setText("Password:");
 
         txtPass.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPassKeyTyped(evt);
+            }
+        });
 
         jList1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -215,16 +254,31 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         jLabel6.setText("Nombres:");
 
         txtNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Apellido Paterno:");
 
         txtApePat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApePat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApePatKeyTyped(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Apellido Materno:");
 
         txtApeMat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApeMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApeMatKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -410,7 +464,7 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         Connection con = SqlConector.conectar();
         if(txtID.getText().isEmpty()){
             try{
-                query = "INSERT INTO usuario VALUES(0,?,?,?,1)";
+                query = "INSERT INTO usuario VALUES(0,?,?,?,1,?,?,?)";
                 PreparedStatement ps = con.prepareStatement(query);
                 ps.setString(1, txtLogin.getText());
                 ps.setString(2, txtPass.getText());
@@ -447,6 +501,24 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
                 ps.setString(5, txtPass.getText());
                 ps.setInt(6, chckState.isSelected()? 0:1);
                 ps.executeUpdate();
+                
+                String[] aux; 
+                while(!perms.isEmpty()){
+                    aux = perms.remove(0);
+                    query = "UPDATE permisos_usuario SET PU_Valor = 0 WHERE USR_ID "+
+                            "= "+ID+" AND PER_ID ="+aux[0]+" AND PU_Valor = 1";
+                    ps = con.prepareStatement(query);
+                    int res = ps.executeUpdate();
+                    System.out.println(res);
+                }
+                while(!permsAccept.isEmpty()){
+                    aux = permsAccept.remove(0);
+                    query = "UPDATE permisos_usuario SET PU_Valor = 1 WHERE USR_ID "+
+                            "= "+ID+" AND PER_ID ="+aux[0]+" AND PU_Valor = 0";
+                    ps = con.prepareStatement(query);
+                    ps.executeUpdate();
+                }
+                SqlConector.closeConn();
                 JOptionPane.showMessageDialog(this, "Registro Actualizado");
                 this.dispose();
             }catch (SQLException e){
@@ -454,6 +526,26 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, txtNombres, 50);
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtApePatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApePatKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, txtApePat, 35);
+    }//GEN-LAST:event_txtApePatKeyTyped
+
+    private void txtApeMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMatKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, txtApeMat, 35);
+    }//GEN-LAST:event_txtApeMatKeyTyped
+
+    private void txtLoginKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLoginKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, txtLogin, 50);
+    }//GEN-LAST:event_txtLoginKeyTyped
+
+    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
+        JTextFieldControl.limitarCaracteres(evt, txtPass, 50);
+    }//GEN-LAST:event_txtPassKeyTyped
 
     /**
      * @param args the command line arguments

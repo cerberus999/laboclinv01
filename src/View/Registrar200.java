@@ -30,6 +30,7 @@ public class Registrar200 extends javax.swing.JFrame {
      */
     public Registrar200(String[] patientData) {
         initComponents();
+        dateFechaNac.setMaxSelectableDate(new Date(System.currentTimeMillis()));
         btnSaveReg.setMnemonic(KeyEvent.VK_S);
         btnCancelReg.setMnemonic(KeyEvent.VK_C);
         Registrar200.data = patientData;
@@ -41,7 +42,7 @@ public class Registrar200 extends javax.swing.JFrame {
         if(data[5] != null)
             dateFechaNac.setDate((java.util.Date)Date.valueOf(data[5]));
         txtEdad.setText(data[6]);//FechaN
-        txtSexo.setText(data[7]);//sexo
+        cmbSexo.setSelectedItem(data[7]);//sexo
     }
 
     /**
@@ -71,9 +72,9 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtSexo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        cmbSexo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Laboratorio - LABOCLIN");
@@ -108,21 +109,41 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel2.setText("Apellido Paterno: ");
 
         txtCI.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtCI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCIKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Apellido Materno:");
 
         txtApePat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApePat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApePatKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Nombres:");
 
         txtApeMat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtApeMat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApeMatKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Edad:");
 
         txtNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombresKeyTyped(evt);
+            }
+        });
 
         dateFechaNac.setDateFormatString("dd/MM/yyyy");
         dateFechaNac.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -135,6 +156,8 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel1.setText("ID:");
 
         txtEdad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEdad.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        txtEdad.setEnabled(false);
         txtEdad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEdadFocusGained(evt);
@@ -144,9 +167,6 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Fecha de Nacimiento:");
 
-        txtSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtSexo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("CI");
 
@@ -154,10 +174,22 @@ public class Registrar200 extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Registro de Pacientes");
 
+        cmbSexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
+        cmbSexo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbSexoFocusGained(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -168,9 +200,6 @@ public class Registrar200 extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,11 +217,10 @@ public class Registrar200 extends javax.swing.JFrame {
                             .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(113, 113, 113))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addGap(113, 113, 113))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +258,7 @@ public class Registrar200 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -289,7 +317,7 @@ public class Registrar200 extends javax.swing.JFrame {
                 pstmt.setString(4, txtApeMat.getText());
                 pstmt.setString(5, sendDate);
                 pstmt.setString(6, txtEdad.getText());
-                pstmt.setString(7, txtSexo.getText());
+                pstmt.setString(7, (String)cmbSexo.getSelectedItem());
                 
                 //pstmt.setDate(6, date.);
                 mess = "Paciente Registrado";
@@ -303,7 +331,7 @@ public class Registrar200 extends javax.swing.JFrame {
                 pstmt.setString(4, txtApeMat.getText());
                 pstmt.setString(5, sendDate);
                 pstmt.setString(6, txtEdad.getText());
-                pstmt.setString(7, txtSexo.getText());
+                pstmt.setString(7, (String)cmbSexo.getSelectedItem());
                 pstmt.setInt(8, Integer.parseInt(txtID.getText()));
                 mess = "Datos actualizados";
             }
@@ -330,6 +358,40 @@ public class Registrar200 extends javax.swing.JFrame {
                 txtEdad.setText("" + aux + " años");
         }
     }//GEN-LAST:event_txtEdadFocusGained
+
+    private void txtCIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtCI, 15);
+    }//GEN-LAST:event_txtCIKeyTyped
+
+    private void txtApePatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApePatKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtApePat, 35);
+    }//GEN-LAST:event_txtApePatKeyTyped
+
+    private void txtApeMatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMatKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtApeMat, 35);
+    }//GEN-LAST:event_txtApeMatKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        laboclinv01.JTextFieldControl.limitarCaracteres(evt, txtNombres, 50);
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    //No calcular con fechas superiores a la actual
+    private void cmbSexoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSexoFocusGained
+        java.util.Date birth = dateFechaNac.getDate();
+        //if(dateFechaNac.){
+            if(birth != null){
+                LocalDate ldb = birth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate ldn = LocalDate.now();
+                Period p = Period.between(ldb, ldn);
+                int aux = p.getYears();
+                if(aux < 1){
+                    String val = "" + p.getMonths() + " meses, " + p.getDays() + " días";
+                    txtEdad.setText(val);
+                }else
+                    txtEdad.setText("" + aux + " años");
+//          }
+        }
+    }//GEN-LAST:event_cmbSexoFocusGained
 
     /**
      * @param args the command line arguments
@@ -365,6 +427,7 @@ public class Registrar200 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelReg;
     private javax.swing.JButton btnSaveReg;
+    private javax.swing.JComboBox<String> cmbSexo;
     private com.toedter.calendar.JDateChooser dateFechaNac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -383,6 +446,5 @@ public class Registrar200 extends javax.swing.JFrame {
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombres;
-    private javax.swing.JTextField txtSexo;
     // End of variables declaration//GEN-END:variables
 }

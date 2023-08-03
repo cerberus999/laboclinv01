@@ -385,7 +385,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         r4 = new Resultados400(ID,prep, dataRes);
         addSetVisibleAtClose();
         r4.setVisible(true);
-        
+        this.setVisible(false);
     }//GEN-LAST:event_btnEditActionPerformed
     /*Send the date and name of the Medic
     */
