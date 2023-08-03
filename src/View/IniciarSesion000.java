@@ -5,13 +5,10 @@
  */
 package View;
 
-import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import laboclinv01.SqlConector;
-import laboclinv01.JTextFieldControl;
 
 /**
  *
@@ -25,6 +22,7 @@ public class IniciarSesion000 extends javax.swing.JFrame {
      */
     public IniciarSesion000() {
         initComponents();
+        this.getRootPane().setDefaultButton(btnConfirm);
     }
 
     /**

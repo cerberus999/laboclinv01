@@ -31,7 +31,7 @@ public class Registrar200 extends javax.swing.JFrame {
     public Registrar200(String[] patientData) {
         initComponents();
         dateFechaNac.setMaxSelectableDate(new Date(System.currentTimeMillis()));
-        btnSaveReg.setMnemonic(KeyEvent.VK_S);
+        btnSaveReg.setMnemonic(KeyEvent.VK_G);
         btnCancelReg.setMnemonic(KeyEvent.VK_C);
         Registrar200.data = patientData;
         txtID.setText(data[0]);//ID

@@ -6,6 +6,7 @@
 package View;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,16 +24,16 @@ import laboclinv01.TextAutoCompleterP;
  */
 public class Resultados400 extends javax.swing.JFrame {
 
-    private static Vector<String> prep;
-    private static int ID;
+    private static Vector<String> creationData;
+    private static int patientID;
     
     int lastMed = 0;
     TextAutoCompleterP autoMedic;
     TextAutoCompleter autoExam;
     DefaultTableModel dtm;
-    Vector<String[]> analitos = new Vector<>();
-    ArrayList<Object> namesANA;
-    static ArrayList<String[]> data;
+    Vector<String[]> analysisData = new Vector<>();
+    ArrayList<Object> namesAnalisis;
+    static ArrayList<String[]> examsPrev;
     /**
      * Creates new form AnalitosMod
      * @param ID
@@ -41,14 +42,20 @@ public class Resultados400 extends javax.swing.JFrame {
      */
     public Resultados400(int ID, Vector prep, ArrayList<String[]> data) {
         initComponents();
-        this.data = data;
-        this.prep = prep;
-        Resultados400.ID = ID;
+        Resultados400.examsPrev = data;
+        Resultados400.creationData = prep;
+        Resultados400.patientID = ID;
         initUI();
+        addMnemonics();
+    }
+    
+    private void addMnemonics(){
+        btnSave.setMnemonic(KeyEvent.VK_G);
+        btnAddExam.setMnemonic(KeyEvent.VK_A);
     }
     
      private void setName(){
-        String query = "SELECT * FROM paciente WHERE PAC_ID = " + ID;
+        String query = "SELECT * FROM paciente WHERE PAC_ID = " + patientID;
         SqlConector.conectar();
         try{
             ResultSet rs = SqlConector.executeQuery(query);
@@ -68,19 +75,21 @@ public class Resultados400 extends javax.swing.JFrame {
 //                    lastMed = aux;
 //                }
     private void initUI(){
+        jButton6.setVisible(false);
+        
         setName();
-        if(!data.isEmpty())
-            for(String[] a: data)
-                ((DefaultTableModel)jTable1.getModel()).addRow(a);
+        if(!examsPrev.isEmpty())
+            for(String[] a: examsPrev)
+                ((DefaultTableModel)tableExamenes.getModel()).addRow(a);
 
-        if(prep.isEmpty()){
+        if(creationData.isEmpty()){
             textDate.setText(new Date(System.currentTimeMillis()).toString());
         }else{
-            textMed.setText(prep.elementAt(2));
-            textDate.setText(prep.elementAt(1));
+            textMed.setText(creationData.elementAt(2));
+            textDate.setText(creationData.elementAt(1));
         }
-            dtm = (DefaultTableModel) jTable1.getModel();
-            namesANA = new ArrayList();
+            dtm = (DefaultTableModel) tableExamenes.getModel();
+            namesAnalisis = new ArrayList();
             autoMedic = new TextAutoCompleterP(textMed);
         
         ResultSet rs;
@@ -111,15 +120,23 @@ public class Resultados400 extends javax.swing.JFrame {
                     }else
                         aux[i-1] = rs.getString(i-j);
                 }
-                analitos.add(aux);
-                namesANA.add(rs.getString("ANA_Nombre"));
+                analysisData.add(aux);
+                boolean notExistID = true;
+                if(!examsPrev.isEmpty())
+                    for(String[] a:examsPrev){
+                        if(a[0].equals(rs.getString("ANA_ID")))
+                            notExistID = false;
+                    }
+                    if(notExistID){
+                        namesAnalisis.add(rs.getString("ANA_Nombre"));
+                    }
             }
             SqlConector.closeConn();
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         autoExam = new TextAutoCompleter(txtExam);
-        autoExam.addItems(namesANA);
+        autoExam.addItems(namesAnalisis);
         autoExam.setMode(0);
     }
     
@@ -134,7 +151,7 @@ public class Resultados400 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableExamenes = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         forwBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -160,8 +177,8 @@ public class Resultados400 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableExamenes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        tableExamenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -177,12 +194,12 @@ public class Resultados400 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(19);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tableExamenes.setGridColor(new java.awt.Color(255, 255, 255));
+        tableExamenes.setRowHeight(19);
+        jScrollPane1.setViewportView(tableExamenes);
+        if (tableExamenes.getColumnModel().getColumnCount() > 0) {
+            tableExamenes.getColumnModel().getColumn(0).setResizable(false);
+            tableExamenes.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -431,9 +448,9 @@ public class Resultados400 extends javax.swing.JFrame {
      * Revisar - eliminar examen
      */
     private void btnAddExamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExamActionPerformed
-        int toAdd = namesANA.indexOf(txtExam.getText());
+        int toAdd = namesAnalisis.indexOf(txtExam.getText());
         if(toAdd != -1){
-            dtm.addRow(analitos.get(toAdd));
+            dtm.addRow(analysisData.get(toAdd));
             autoExam.removeItem(txtExam.getText());
         }
         txtExam.setText("");
@@ -445,31 +462,57 @@ public class Resultados400 extends javax.swing.JFrame {
         SqlConector.conectar();
         try{
             ResultSet rs;
+            //Verificar si existe, sino añadirlo a la tabla medico
             if(!isMedic){
                 query = "INSERT INTO medico VALUES (0,'"+ textMed.getText() +"')";
                 SqlConector.executeQuery(query);
-            }
+            }//Obtener ID de Medico Actual
             query = "SELECT * FROM medico WHERE MED_Nombres LIKE '"+textMed.getText()+"' LIMIT 1";
             rs = SqlConector.executeQuery(query);
             rs.next();
             lastMed = rs.getInt(1);
-            
-            query = "INSERT INTO hojaresultados VALUES ("+ 0 +",'"+
-                    textDate.getText()+"',"+ID+","+ lastMed +")";
+            //Crea una nueva hojaresultados o la actualiza
+            if(creationData.isEmpty()){
+                query = "INSERT INTO hojaresultados VALUES ("+ 0 +",'"+
+                    textDate.getText()+"',"+patientID+","+ lastMed +")";
+            }else{
+                query = "UPDATE hojaresultados SET MED_ID = "+lastMed+" WHERE HR_ID = "+
+                        creationData.get(0);
+            }
             SqlConector.executeQuery(query);
+            //obtener el id de hojaRes
+            String idHR;
+            if(creationData.isEmpty()){
+                query = "SELECT * FROM hojaresultados WHERE HR_ID LIKE '%%' ORDER BY HR_ID DESC LIMIT 1";
+                rs = SqlConector.executeQuery(query);
+                rs.next();
+                idHR = rs.getString(1);
+            }else{
+                idHR = creationData.get(0);
+            }
             
-            query = "SELECT * FROM hojaresultados WHERE HR_ID LIKE '%%' ORDER BY HR_ID DESC LIMIT 1";
-            rs = SqlConector.executeQuery(query);
-            rs.next();
-            String idHR = rs.getString(1);
-            
+            //obtener id de analisis ya añadidos
+//            for(String[] a:analysisData){
+//                a[0]
+//            }
             int limit = dtm.getRowCount();
             Vector<Object> aux;
             for(int i=0;i<limit;i++){
                 aux = (Vector)(dtm.getDataVector()).elementAt(i);
                 String valueRes = (String)aux.elementAt(2);
                 String idAna = (String)aux.elementAt(0);
-                query = "INSERT INTO resultado values ('" + valueRes + "',"+idAna+ ","+ idHR +")";
+                boolean notExistID = true;
+                if(!examsPrev.isEmpty())
+                    for(String[] a:examsPrev){
+                        if(a[0].equals(idAna))
+                            notExistID = false;
+                    }
+                if(notExistID){
+                    query = "INSERT INTO resultado values ('" + valueRes + "',"+idAna+ ","+ idHR +")";
+                } else{
+                    query = "UPDATE resultado SET RES_Valor = '"+valueRes+"' WHERE "+
+                            "ANA_ID = "+idAna+" AND HR_ID = " + idHR;
+                }
                 SqlConector.executeQuery(query);
             }
             SqlConector.closeConn();
@@ -520,7 +563,7 @@ public class Resultados400 extends javax.swing.JFrame {
         /* Create and display the form */
         
         java.awt.EventQueue.invokeLater(() -> {
-            new Resultados400(ID,prep,data).setVisible(true);
+            new Resultados400(patientID,creationData,examsPrev).setVisible(true);
         });
     }
 
@@ -541,8 +584,8 @@ public class Resultados400 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblPatient;
+    private javax.swing.JTable tableExamenes;
     private javax.swing.JTextField textDate;
     private javax.swing.JTextField textMed;
     private javax.swing.JTextField txtExam;

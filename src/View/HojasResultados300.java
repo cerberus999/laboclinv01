@@ -5,6 +5,7 @@
  */
 package View;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
 
     Resultados400 r4;
     private static Vector<String> prep;
-    private static int ID;
+    private static int patientID;
     int idSelected;
     /**
      * Creates new form Resultados300
@@ -32,11 +33,17 @@ public class HojasResultados300 extends javax.swing.JFrame {
      */
     public HojasResultados300(int identificador) {
         
-        HojasResultados300.ID = identificador;
+        HojasResultados300.patientID = identificador;
         initComponents();
         getDates();
         setName();
+        addMnemonics();
         //jLabel2.setText(nombre);
+    }
+    
+    private void addMnemonics(){
+        btnAdd.setMnemonic(KeyEvent.VK_A);
+        btnEdit.setMnemonic(KeyEvent.VK_E);
     }
     
     private void getDates(){
@@ -48,7 +55,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         }
         String query = "SELECT HR_ID, HR_FechaEmision, MED_Nombres FROM medico AS m," + 
                 " paciente AS p, hojaresultados AS hr WHERE p.PAC_ID = hr.PAC_ID " + 
-                "AND hr.MED_ID = m.MED_ID AND p.PAC_ID = " + ID ;
+                "AND hr.MED_ID = m.MED_ID AND p.PAC_ID = " + patientID ;
         SqlConector.conectar();
         try{
             ResultSet rs = SqlConector.executeQuery(query);
@@ -67,7 +74,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
     }
 
     private void setName(){
-        String query = "SELECT * FROM paciente WHERE PAC_ID = " + ID;
+        String query = "SELECT * FROM paciente WHERE PAC_ID = " + patientID;
         SqlConector.conectar();
         try{
             ResultSet rs = SqlConector.executeQuery(query);
@@ -98,7 +105,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         AnalisysTable = new javax.swing.JTable();
-        addRes = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
@@ -191,11 +198,11 @@ public class HojasResultados300 extends javax.swing.JFrame {
             AnalisysTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        addRes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        addRes.setText("Agregar");
-        addRes.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnAdd.setText("Agregar");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addResActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -244,7 +251,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -267,7 +274,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(addRes)
+                                .addComponent(btnAdd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnEdit)))
                         .addGap(62, 62, 62)
@@ -350,13 +357,13 @@ public class HojasResultados300 extends javax.swing.JFrame {
         });
     }
     
-    private void addResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         prep = new Vector();
-        r4 = new Resultados400(ID,prep,new ArrayList<>());
+        r4 = new Resultados400(patientID,prep,new ArrayList<>());
         addSetVisibleAtClose();
         r4.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_addResActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
@@ -382,7 +389,7 @@ public class HojasResultados300 extends javax.swing.JFrame {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        r4 = new Resultados400(ID,prep, dataRes);
+        r4 = new Resultados400(patientID,prep, dataRes);
         addSetVisibleAtClose();
         r4.setVisible(true);
         this.setVisible(false);
@@ -424,14 +431,14 @@ public class HojasResultados300 extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new HojasResultados300(ID).setVisible(true);
+            new HojasResultados300(patientID).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable AnalisysTable;
-    private javax.swing.JButton addRes;
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton forwBtn;

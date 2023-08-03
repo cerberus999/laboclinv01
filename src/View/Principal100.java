@@ -110,7 +110,7 @@ public class Principal100 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         searchTable = new javax.swing.JTable();
         clear = new javax.swing.JButton();
-        btnRes = new javax.swing.JButton();
+        btnHist = new javax.swing.JButton();
         btnUsrs = new javax.swing.JButton();
         btnUsrs1 = new javax.swing.JButton();
 
@@ -298,14 +298,12 @@ public class Principal100 extends javax.swing.JFrame {
             searchTable.getColumnModel().getColumn(0).setPreferredWidth(15);
             searchTable.getColumnModel().getColumn(1).setResizable(false);
             searchTable.getColumnModel().getColumn(2).setResizable(false);
-            searchTable.getColumnModel().getColumn(2).setCellEditor(null);
             searchTable.getColumnModel().getColumn(3).setResizable(false);
             searchTable.getColumnModel().getColumn(4).setResizable(false);
             searchTable.getColumnModel().getColumn(5).setResizable(false);
             searchTable.getColumnModel().getColumn(6).setResizable(false);
             searchTable.getColumnModel().getColumn(7).setResizable(false);
             searchTable.getColumnModel().getColumn(7).setPreferredWidth(20);
-            searchTable.getColumnModel().getColumn(7).setCellEditor(null);
         }
 
         clear.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -316,11 +314,11 @@ public class Principal100 extends javax.swing.JFrame {
             }
         });
 
-        btnRes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnRes.setText("Resultados");
-        btnRes.addActionListener(new java.awt.event.ActionListener() {
+        btnHist.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnHist.setText("Historial");
+        btnHist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResActionPerformed(evt);
+                btnHistActionPerformed(evt);
             }
         });
 
@@ -365,7 +363,7 @@ public class Principal100 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnRes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnHist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
@@ -409,7 +407,7 @@ public class Principal100 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRes)
+                        .addComponent(btnHist)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsrs)
                         .addGap(18, 18, 18)
@@ -565,12 +563,12 @@ public class Principal100 extends javax.swing.JFrame {
         mostrar();
     }//GEN-LAST:event_clearActionPerformed
 
-    private void btnResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResActionPerformed
+    private void btnHistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistActionPerformed
         res = new HojasResultados300(idSelected);
         resSetVisbleAtClose();
         this.setVisible(false);
         res.setVisible(true);
-    }//GEN-LAST:event_btnResActionPerformed
+    }//GEN-LAST:event_btnHistActionPerformed
 
     private void btnUsrsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsrsActionPerformed
         Usuarios usrs = new Usuarios();
@@ -787,7 +785,7 @@ public class Principal100 extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnRes;
+    private javax.swing.JButton btnHist;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUsrs;
@@ -811,5 +809,7 @@ public class Principal100 extends javax.swing.JFrame {
         btnDel.setMnemonic(KeyEvent.VK_L);
         btnEdit.setMnemonic(KeyEvent.VK_E);
         btnSearch.setMnemonic(KeyEvent.VK_B);
+        btnHist.setMnemonic(KeyEvent.VK_H);
+        
     }
 }
