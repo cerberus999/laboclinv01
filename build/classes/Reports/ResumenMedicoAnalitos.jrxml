@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="29"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FechaIni" class="java.util.Date">
+		<defaultValueExpression><![CDATA["2023-07-15"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FechaFin" class="java.util.Date">
+		<defaultValueExpression><![CDATA["2023-08-02"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+	hr.HR_FechaEmision, m.MED_Nombres, concat(p.PAC_ID, " ", p.PAC_Nombres, " ",p.PAC_ApePat ," ",p.PAC_ApeMat) as NombreCompleto, a.ANA_Nombre, count(a.ANA_ID) as CantidadDeExamenes 
+FROM 
+	medico m, hojaresultados hr, paciente p, resultado r, analito a WHERE 
+	m.MED_ID = hr.MED_ID AND p.PAC_ID = hr.PAC_ID AND hr.HR_ID = r.HR_ID AND r.ANA_ID = a.ANA_ID AND hr.HR_FechaEmision BETWEEN $P{FechaIni} AND $P{FechaFin}
+GROUP BY a.ANA_ID, p.PAC_ID 
+ORDER BY m.MED_ID, p.PAC_ID;]]>
+	</queryString>
+	<field name="HR_FechaEmision" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MED_Nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NombreCompleto" class="java.lang.String"/>
+	<field name="ANA_Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CantidadDeExamenes" class="java.lang.Long"/>
+	<variable name="Total" class="java.lang.Long" resetType="Group" resetGroup="MED_Nombres" calculation="Sum">
+		<variableExpression><![CDATA[$F{CantidadDeExamenes}]]></variableExpression>
+	</variable>
+	<group name="MED_Nombres" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{MED_Nombres}]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<staticText>
+					<reportElement x="0" y="0" width="72" height="23"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Medico:]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="72" y="0" width="179" height="23"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{MED_Nombres}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="471" y="0" width="76" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single"/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$V{Total}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="33" y="0" width="39" height="20"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="19" width="572" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="NombrePAC">
+		<groupExpression><![CDATA[$F{NombreCompleto}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="202" height="20"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{NombreCompleto}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="19" width="572" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="81">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="306" y="61" width="94" height="20"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{FechaIni}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="44" printWhenGroupChanges="MED_Nombres"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="SansSerif" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen Medico/Examenes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="61" width="39" height="20"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single"/>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="439" y="61" width="94" height="20"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$P{FechaFin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="61" width="39" height="20"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single"/>
+				<text><![CDATA[hasta:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="1"/>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="33" y="0" width="169" height="20"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ANA_Nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="471" y="0" width="76" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CantidadDeExamenes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

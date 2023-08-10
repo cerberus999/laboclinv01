@@ -71,14 +71,14 @@
                   <EmptySpace pref="66" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="clear" alignment="1" pref="110" max="32767" attributes="0"/>
-                      <Component id="btnAdd" alignment="1" pref="110" max="32767" attributes="0"/>
                       <Component id="btnHist" alignment="1" pref="110" max="32767" attributes="0"/>
                       <Component id="btnEdit" alignment="1" pref="110" max="32767" attributes="0"/>
                       <Component id="btnDel" alignment="1" pref="110" max="32767" attributes="0"/>
                       <Component id="btnSalir" alignment="1" pref="110" max="32767" attributes="0"/>
                       <Component id="btnSearch" alignment="1" max="32767" attributes="0"/>
-                      <Component id="btnUsrs" max="32767" attributes="0"/>
                       <Component id="btnUsrs1" max="32767" attributes="0"/>
+                      <Component id="btnUsrs" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnAdd" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

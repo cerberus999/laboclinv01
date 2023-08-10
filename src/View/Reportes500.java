@@ -5,18 +5,8 @@
  */
 package View;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.HIDE_ON_CLOSE;
-import laboclinv01.SqlConector;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.view.JasperViewer;
+import laboclinv01.ReportControler;
 
 /**
  *
@@ -46,14 +36,20 @@ public class Reportes500 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtFechaIni1 = new javax.swing.JTextField();
+        txtFechaFin1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         txtFechaIni.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtFechaIni.setText("2023-07-18");
 
         txtFechaFin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtFechaFin.setText("2023-08-05");
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setText("Generar Reporte");
@@ -69,6 +65,20 @@ public class Reportes500 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Reportes");
+
+        txtFechaIni1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtFechaIni1.setText("2023-07-18");
+
+        txtFechaFin1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtFechaFin1.setText("2023-08-05");
+
+        jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jButton2.setText("Generar Reporte");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,7 +96,13 @@ public class Reportes500 extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)))
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtFechaIni1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2)))
                         .addGap(0, 583, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -102,7 +118,12 @@ public class Reportes500 extends javax.swing.JFrame {
                     .addComponent(txtFechaIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFechaIni1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,32 +138,22 @@ public class Reportes500 extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HashMap<String,String> map = new HashMap<>();
         map.put("FechaIni", txtFechaIni.getText());
         map.put("FechaFin", txtFechaFin.getText());
-        mostrarReporte("HistorialMedico.jrxml",map,(float) 1);
+        ReportControler.mostrarReporte("HistorialMedico.jrxml",map,(float) 1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    void mostrarReporte(String file, HashMap map, float zoom){
-        Connection conexion = SqlConector.conectar();
-        String dir = "C:\\Users\\Lenovo\\Documents\\NetBeansProjects\\LABOCLINv01\\src\\Reports\\" + file;
-        try{
-            JasperPrint jp;
-            JasperReport jr = JasperCompileManager.compileReport(dir);
-                jp = JasperFillManager.fillReport(jr, map, conexion);
-            
-            JasperViewer jv = new JasperViewer(jp, false);
-            jv.setZoomRatio(zoom);
-            jv.setDefaultCloseOperation(HIDE_ON_CLOSE);
-            jv.setVisible(true);
-            SqlConector.closeConn();
-        }catch(NoClassDefFoundError | JRException je){
-            JOptionPane.showMessageDialog(this, je.getMessage());
-        }
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        HashMap<String,String> map = new HashMap<>();
+        map.put("FechaInicio", txtFechaIni1.getText());
+        map.put("FechaFinal", txtFechaFin1.getText());
+        ReportControler.mostrarReporte("Blank_Letter.jrxml",map,(float) 1);
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -160,32 +171,30 @@ public class Reportes500 extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Reportes500.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Reportes500.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Reportes500.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Reportes500.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Reportes500().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Reportes500().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtFechaFin;
+    private javax.swing.JTextField txtFechaFin1;
     private javax.swing.JTextField txtFechaIni;
+    private javax.swing.JTextField txtFechaIni1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="356" pageHeight="243" orientation="Landscape" columnWidth="173" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5">
+	<property name="ireport.zoom" value="1.948717100000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.chart.theme" value="default"/>
+	<subDataset name="DataSetGlucosa">
+		<queryString>
+			<![CDATA[SELECT
+     paciente.`FechaReg_PAC` AS paciente_FechaReg_PAC,
+     resultado.`Valor_EXAM` AS resultado_Valor_EXAM,
+     examen.`Nombre_EXAM` AS examen_Nombre_EXAM,
+     paciente.`Nombres_PAC` AS paciente_Nombres_PAC,
+     paciente.`ID_PAC` AS paciente_ID_PAC,
+     paciente.`ApePat_PAC` AS paciente_ApePat_PAC
+FROM
+     `paciente` paciente INNER JOIN `resultado` resultado ON paciente.`ID_PAC` = resultado.`ID_PAC`
+     INNER JOIN `examen` examen ON resultado.`ID_EXAM` = examen.`ID_EXAM`
+WHERE
+     examen.ID_EXAM = 1]]>
+		</queryString>
+		<field name="paciente_FechaReg_PAC" class="java.sql.Date"/>
+		<field name="resultado_Valor_EXAM" class="java.lang.Integer"/>
+		<field name="examen_Nombre_EXAM" class="java.lang.String"/>
+		<field name="paciente_Nombres_PAC" class="java.lang.String"/>
+		<field name="paciente_ID_PAC" class="java.lang.Integer"/>
+		<field name="paciente_ApePat_PAC" class="java.lang.String"/>
+		<group name="paciente_ID_PAC">
+			<groupExpression><![CDATA[$F{paciente_ID_PAC}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="PacID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     analito.`ANA_ID` AS analito_ANA_ID,
+     analito.`ANA_Nombre` AS analito_ANA_Nombre,
+     analito.`ANA_TipoMuestra` AS analito_ANA_TipoMuestra,
+     analito.`ANA_ValoresRef` AS analito_ANA_ValoresRef,
+     analito.`ANA_UnidadMed` AS analito_ANA_UnidadMed,
+     hojaresultados.`HR_ID` AS hojaresultados_HR_ID,
+     hojaresultados.`HR_FechaEmision` AS hojaresultados_HR_FechaEmision,
+     hojaresultados.`PAC_ID` AS hojaresultados_PAC_ID,
+     hojaresultados.`MED_ID` AS hojaresultados_MED_ID,
+     paciente.`PAC_ID` AS paciente_PAC_ID,
+     paciente.`PAC_CI` AS paciente_PAC_CI,
+     paciente.`PAC_Nombres` AS paciente_PAC_Nombres,
+     paciente.`PAC_ApePat` AS paciente_PAC_ApePat,
+     paciente.`PAC_ApeMat` AS paciente_PAC_ApeMat,
+     paciente.`PAC_FechaNac` AS paciente_PAC_FechaNac,
+     paciente.`PAC_Edad` AS paciente_PAC_Edad,
+     paciente.`PAC_Sexo` AS paciente_PAC_Sexo,
+     paciente.`PAC_oculto` AS paciente_PAC_oculto,
+     resultado.`RES_Valor` AS resultado_RES_Valor,
+     resultado.`ANA_ID` AS resultado_ANA_ID,
+     resultado.`HR_ID` AS resultado_HR_ID
+FROM
+     `paciente` paciente INNER JOIN `hojaresultados` hojaresultados ON paciente.`PAC_ID` = hojaresultados.`PAC_ID`
+     INNER JOIN `resultado` resultado ON hojaresultados.`HR_ID` = resultado.`HR_ID`
+     INNER JOIN `analito` analito ON resultado.`ANA_ID` = analito.`ANA_ID`
+WHERE
+paciente.PAC_ID = hojaresultados.PAC_ID AND hojaresultados.HR_ID = resultado.HR_ID AND paciente.PAC_ID = $P{PacID} AND resultado.ANA_ID = (SELECT ANA_ID FROM analito WHERE ANA_Nombre = 'Glucosa')]]>
+	</queryString>
+	<field name="analito_ANA_ID" class="java.lang.String"/>
+	<field name="analito_ANA_Nombre" class="java.lang.String"/>
+	<field name="analito_ANA_TipoMuestra" class="java.lang.String"/>
+	<field name="analito_ANA_ValoresRef" class="java.lang.String"/>
+	<field name="analito_ANA_UnidadMed" class="java.lang.String"/>
+	<field name="hojaresultados_HR_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_HR_FechaEmision" class="java.sql.Date"/>
+	<field name="hojaresultados_PAC_ID" class="java.lang.Integer"/>
+	<field name="hojaresultados_MED_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_ID" class="java.lang.Integer"/>
+	<field name="paciente_PAC_CI" class="java.lang.String"/>
+	<field name="paciente_PAC_Nombres" class="java.lang.String"/>
+	<field name="paciente_PAC_ApePat" class="java.lang.String"/>
+	<field name="paciente_PAC_ApeMat" class="java.lang.String"/>
+	<field name="paciente_PAC_FechaNac" class="java.sql.Date"/>
+	<field name="paciente_PAC_Edad" class="java.lang.String"/>
+	<field name="paciente_PAC_Sexo" class="java.lang.String"/>
+	<field name="paciente_PAC_oculto" class="java.lang.Boolean"/>
+	<field name="resultado_RES_Valor" class="java.lang.String"/>
+	<field name="resultado_ANA_ID" class="java.lang.String"/>
+	<field name="resultado_HR_ID" class="java.lang.Integer"/>
+	<variable name="aux" class="java.lang.Integer">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="PAC_ID">
+		<groupExpression><![CDATA[$F{paciente_PAC_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="12">
+				<textField>
+					<reportElement x="93" y="0" width="81" height="10"/>
+					<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+						<font size="5"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_ID}.toString()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="0" width="81" height="10"/>
+					<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+						<font size="5"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{paciente_PAC_Nombres} + " " + $F{paciente_PAC_ApePat} + " " + $F{paciente_PAC_ApeMat}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="132">
+				<timeSeriesChart>
+					<chart>
+						<reportElement mode="Transparent" x="0" y="0" width="346" height="132"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<timeSeriesDataset>
+						<dataset resetType="Group" resetGroup="PAC_ID"/>
+						<timeSeries>
+							<seriesExpression><![CDATA[$F{paciente_PAC_ID}]]></seriesExpression>
+							<timePeriodExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></timePeriodExpression>
+							<valueExpression><![CDATA[Integer.parseInt($F{resultado_RES_Valor})]]></valueExpression>
+						</timeSeries>
+					</timeSeriesDataset>
+					<timeSeriesPlot>
+						<plot foregroundAlpha="1.0"/>
+						<timeAxisFormat>
+							<axisFormat/>
+						</timeAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+						<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+					</timeSeriesPlot>
+				</timeSeriesChart>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="156"/>
+	</background>
+	<title>
+		<band height="13">
+			<staticText>
+				<reportElement x="0" y="0" width="346" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Resultados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="1"/>
+	</columnHeader>
+	<detail>
+		<band height="3"/>
+	</detail>
+	<columnFooter>
+		<band height="12">
+			<textField>
+				<reportElement x="0" y="0" width="93" height="11"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Pie de column"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

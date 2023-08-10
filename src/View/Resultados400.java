@@ -101,7 +101,8 @@ public class Resultados400 extends javax.swing.JFrame {
             rs = SqlConector.executeQuery(query);
             autoMedic.setMode(0);
             while(rs.next()){
-                String[] aux = new String[2];
+                String[] aux;
+                aux = new String[2];
                 for(int i=0 ; i<2; i++){
                     aux[i] = rs.getString(i+1);
                 }
@@ -508,10 +509,10 @@ public class Resultados400 extends javax.swing.JFrame {
                             notExistID = false;
                     }
                 if(notExistID){
-                    query = "INSERT INTO resultado values ('" + valueRes + "',"+idAna+ ","+ idHR +")";
+                    query = "INSERT INTO resultado values ('" + valueRes + "','"+idAna+ "',"+ idHR +")";
                 } else{
                     query = "UPDATE resultado SET RES_Valor = '"+valueRes+"' WHERE "+
-                            "ANA_ID = "+idAna+" AND HR_ID = " + idHR;
+                            "ANA_ID = '"+idAna+"' AND HR_ID = " + idHR;
                 }
                 SqlConector.executeQuery(query);
             }
@@ -519,7 +520,7 @@ public class Resultados400 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Datos Guardados con exito!");
             this.dispose();
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getSQLState()+" " + e.getMessage());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

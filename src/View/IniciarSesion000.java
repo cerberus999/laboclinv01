@@ -19,7 +19,7 @@ public class IniciarSesion000 extends javax.swing.JFrame {
     Principal100 p1;
     /**
      * Creates new form Session
-     */
+     */ 
     public IniciarSesion000() {
         initComponents();
         this.getRootPane().setDefaultButton(btnConfirm);
@@ -137,7 +137,7 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+ 
     //SQL INJECTION VULNERABLE
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         String query;
