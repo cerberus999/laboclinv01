@@ -143,7 +143,8 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         String query;
         SqlConector.conectar();
         query = "SELECT pu.PER_ID FROM usuario u, permisos_usuario "+
-                "pu WHERE USR_Login = '"+txtUser.getText()+"' AND USR_Password = '"+new String(txtPass.getPassword())+"' "+
+                "pu WHERE USR_Login = BINARY '"+txtUser.getText()+"' "+
+                "AND USR_Password = BINARY '"+new String(txtPass.getPassword())+"' "+
                 "AND USR_Estado = 0 AND pu.USR_ID = u.USR_ID AND pu.PU_Valor = 1";
         //JOptionPane.showMessageDialog(this, new String(txtPass.getPassword()));
         try{

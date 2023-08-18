@@ -33,12 +33,14 @@ public class HojasResultados300 extends javax.swing.JFrame {
      * @param identificador
      */
     public HojasResultados300(int identificador) {
-        
         HojasResultados300.patientID = identificador;
         initComponents();
+        
         getDates();
         setName();
         addMnemonics();
+        DefaultTableModel def = (DefaultTableModel)AnalisysTable.getModel();
+        idSelected = Integer.parseInt( (String) def.getValueAt(0, 0));
         //jLabel2.setText(nombre);
     }
     
