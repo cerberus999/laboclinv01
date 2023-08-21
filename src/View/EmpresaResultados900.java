@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import laboclinv01.SqlConector;
 
@@ -92,18 +93,13 @@ public class EmpresaResultados900 extends javax.swing.JFrame {
         chargeTable.setAutoscrolls(false);
         chargeTable.setRowHeight(19);
         chargeTable.getTableHeader().setReorderingAllowed(false);
-        chargeTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chargeTableMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(chargeTable);
         if (chargeTable.getColumnModel().getColumnCount() > 0) {
             chargeTable.getColumnModel().getColumn(1).setPreferredWidth(210);
         }
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setText("Salir");
+        jButton1.setText("Retroceder");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -175,10 +171,6 @@ public class EmpresaResultados900 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chargeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chargeTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chargeTableMouseClicked
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Connection con = SqlConector.conectar();
         String query;
@@ -229,15 +221,20 @@ public class EmpresaResultados900 extends javax.swing.JFrame {
                         index++;
                     }
                 }
-                
+                dispose();
+                dispose();
+                dispose();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(EmpresaResultados900.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        int opt = JOptionPane.showConfirmDialog(this, "Al confirmar perderá los datos actuales", "Confirmar", 0, 2);
+        if(opt == 0){
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

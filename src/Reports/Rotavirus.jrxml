@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 5.5.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rotavirus" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f03d300-c3ee-40cb-bb8e-760b9fd0d268">
+	<queryString>
+		<![CDATA[SELECT * 
+FROM resultado r, hojaresultados hr
+WHERE r.HR_ID = hr.HR_ID AND ANA_ID = (SELECT ANA_ID FROM analito WHERE ANA_Nombre LIKE "ROTAVIRUS")
+ORDER BY hr.HR_FechaEmision]]>
+	</queryString>
+	<field name="RES_Valor" class="java.lang.String"/>
+	<field name="ANA_ID" class="java.lang.String"/>
+	<field name="HR_ID" class="java.lang.Integer"/>
+	<field name="COLUMN_4" class="java.lang.Integer"/>
+	<field name="HR_FechaEmision" class="java.sql.Date"/>
+	<field name="PAC_ID" class="java.lang.Integer"/>
+	<field name="MED_ID" class="java.lang.Integer"/>
+	<variable name="CONTPos" class="java.lang.Integer" resetType="Group" resetGroup="FechaGroup" calculation="Count">
+		<variableExpression><![CDATA[IF($F{RES_Valor}.equals( "POSITIVO" ),$F{RES_Valor},null)]]></variableExpression>
+	</variable>
+	<variable name="CONTNeg" class="java.lang.Integer" resetType="Group" resetGroup="FechaGroup" calculation="Count">
+		<variableExpression><![CDATA[IF($F{RES_Valor}.equals("NEGATIVO"),$F{RES_Valor},null)]]></variableExpression>
+	</variable>
+	<variable name="CONTTotal" class="java.lang.Integer" resetType="Group" resetGroup="FechaGroup" calculation="Count">
+		<variableExpression><![CDATA[$F{RES_Valor}]]></variableExpression>
+	</variable>
+	<group name="FechaGroup">
+		<groupExpression><![CDATA[$F{HR_FechaEmision}.getMonth()]]></groupExpression>
+		<groupHeader>
+			<band height="3"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="3"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="570" height="50" uuid="538c4c0f-7876-45a5-9ad2-8c57a91dabb7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<text><![CDATA[Reporte Rotavirus]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="3" splitType="Stretch"/>
+	</detail>
+	<summary>
+		<band height="536" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Master" renderType="draw" theme="default">
+					<reportElement x="30" y="100" width="510" height="200" uuid="7880c316-fb4f-4a6d-88dd-2fed34c2e7be"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["TOTAL"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{HR_FechaEmision}.getMonth()]]></categoryExpression>
+						<valueExpression><![CDATA[$V{CONTTotal}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["POSITIVO"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{HR_FechaEmision}.getMonth()]]></categoryExpression>
+						<valueExpression><![CDATA[$V{CONTPos}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["NEGATIVO"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{HR_FechaEmision}.getMonth()]]></categoryExpression>
+						<valueExpression><![CDATA[$V{CONTNeg}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot isShowLabels="true">
+					<plot backgroundAlpha="0.94" foregroundAlpha="0.88">
+						<seriesColor seriesOrder="0" color="#498DF0"/>
+						<seriesColor seriesOrder="1" color="#DC143C"/>
+						<seriesColor seriesOrder="2" color="#00FF00"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<timeSeriesChart>
+				<chart evaluationTime="Report">
+					<reportElement x="30" y="330" width="510" height="200" uuid="e145a308-2587-4540-8c47-25bd284f2d46"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<timeSeriesDataset timePeriod="Month">
+					<timeSeries>
+						<seriesExpression><![CDATA["POSITIVO"]]></seriesExpression>
+						<timePeriodExpression><![CDATA[$F{HR_FechaEmision}]]></timePeriodExpression>
+						<valueExpression><![CDATA[$V{CONTPos}]]></valueExpression>
+					</timeSeries>
+				</timeSeriesDataset>
+				<timeSeriesPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#FA1629"/>
+					</plot>
+					<timeAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</timeAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</timeSeriesPlot>
+			</timeSeriesChart>
+			<staticText>
+				<reportElement x="5" y="25" width="80" height="19" uuid="9a013097-db2e-478a-b0a8-0a38567c05bc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[POSITIVO]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="85" y="62" width="100" height="18" isPrintInFirstWholeBand="true" uuid="450065f3-ed90-401e-abfb-451a906157e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{CONTTotal}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement x="85" y="25" width="100" height="18" uuid="9352a3b9-bfef-45da-bf3f-6f6282593136"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none"/>
+				<textFieldExpression><![CDATA[$V{CONTPos}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement x="85" y="44" width="100" height="18" uuid="f16da1a4-7c0e-4636-944b-10c1ef500b98"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{CONTNeg}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="44" width="80" height="18" uuid="2d1b1cda-6ec8-4586-b85d-d64596dd6544"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[NEGATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="62" width="80" height="18" uuid="16ff90ab-4e4a-4c54-b2ab-ca961c9b47df"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="5" y="5" width="100" height="18" uuid="bde0f4ae-ef7c-4373-8fbc-e5dbda871878"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{HR_FechaEmision}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

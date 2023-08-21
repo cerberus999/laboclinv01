@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e3fe76b-1330-4da6-a70f-25f8c6ac2c2b">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 5.5.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88ba5f35-2887-41de-97bd-63694bb88e7f">
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -183,7 +181,7 @@
 		</box>
 		<paragraph lineSpacing="Single"/>
 	</style>
-	<subDataset name="Dataset1" uuid="f075c351-8791-4184-9174-48bf4558f62b">
+	<subDataset name="Dataset1" uuid="681edf07-4e61-4e9c-9a9f-fccefd6b540b">
 		<parameter name="FechaInicio" class="java.lang.String"/>
 		<parameter name="FechaFinal" class="java.lang.String"/>
 		<queryString>
@@ -255,7 +253,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 	<title>
 		<band height="63">
 			<staticText>
-				<reportElement x="0" y="0" width="570" height="61" uuid="d139011a-154b-432f-b5e2-ea0d82fcb3ec"/>
+				<reportElement x="1" y="0" width="570" height="61" uuid="1a67679d-db0b-4ba7-9ab3-9d593ae22482"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="25"/>
 					<paragraph lineSpacing="Single"/>
@@ -267,28 +265,28 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="370" y="0" width="70" height="30" uuid="74442041-b8c2-400e-b82d-063d8f80499b"/>
+				<reportElement x="370" y="0" width="70" height="30" uuid="be69d096-ae13-41d7-8205-5f87c5ea2604"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FechaInicio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="500" y="2" width="70" height="30" uuid="b0444ff3-b03b-468d-ad48-195edb707618"/>
+				<reportElement x="500" y="0" width="70" height="30" uuid="00f57bd4-114b-40a8-8103-5b14df6e335c"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{FechaInicio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="0" width="50" height="30" uuid="7b84dc35-19a3-470f-9a49-5555caaaffaa"/>
+				<reportElement x="320" y="0" width="50" height="30" uuid="568eaf0b-fd50-4930-a2e9-a4e0511ae9c4"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Desde:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="0" width="50" height="30" uuid="6a64796b-09ec-47e5-89d4-91d1d182fedc"/>
+				<reportElement x="450" y="0" width="50" height="30" uuid="3f488f7c-d605-4834-9c7a-792f44b974f5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 					<paragraph lineSpacing="Single"/>
 				</textElement>
@@ -299,9 +297,9 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 	<summary>
 		<band height="77">
 			<componentElement>
-				<reportElement x="0" y="0" width="570" height="64" uuid="3a218bae-9cec-480e-8caf-c8fc5e4f0671"/>
+				<reportElement x="0" y="0" width="570" height="64" uuid="d5e78894-f582-4755-86e3-ead2d8a642bb"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Dataset1" uuid="96d5dfe4-0887-463c-bc28-e07db5ec44ab">
+					<datasetRun subDataset="Dataset1" uuid="e877e4d5-ec00-4cb8-ba71-e310abe4b7df">
 						<datasetParameter name="FechaInicio">
 							<datasetParameterExpression><![CDATA[$P{FechaInicio}]]></datasetParameterExpression>
 						</datasetParameter>
@@ -310,10 +308,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="25" uuid="70b68ae9-1860-4ab8-8690-fc9ffe626906">
+					<jr:column width="25" uuid="e277e3b3-0323-4391-8a85-902d7f2ecad9">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="30" uuid="b68ce7f1-9c4a-4297-924c-16aa2563aa95"/>
+								<reportElement x="0" y="0" width="25" height="30" uuid="3e368cfb-e9ed-4bfb-9528-74efc66b77c8"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -322,7 +320,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="30" uuid="d546f89e-53a1-4afc-9e12-b3b090ad0b82"/>
+								<reportElement x="0" y="0" width="25" height="30" uuid="dd1fe27e-92d4-4854-afe1-4ee6cc53b0c8"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -330,10 +328,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="65" uuid="d6842e57-9d3a-4d41-92e0-f77bf069306c">
+					<jr:column width="65" uuid="0bf1a2ed-5ae8-49f4-b741-d0a5a3f3807b">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="65" height="30" uuid="41bfda3a-3127-435d-81c5-64c1b9da662e"/>
+								<reportElement x="0" y="0" width="65" height="30" uuid="cd976b42-3fb6-4bf4-949e-b6d9c27fd890"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -342,7 +340,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="65" height="30" uuid="5bdae876-9918-4c1e-911a-d37c1071bbe7"/>
+								<reportElement x="0" y="0" width="65" height="30" uuid="82898b6e-d5f1-463b-8baf-c2e31fa801fa"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -350,10 +348,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="639075b1-eb33-4914-9a6a-daa0aca7a25d">
+					<jr:column width="90" uuid="5ba826a4-a81a-426a-9869-1f265565312c">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="437b9dc1-74ad-4d84-9101-ff6299b2bf03"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="239f1cd7-6c3f-42b7-9e1c-af40d35ade76"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -362,7 +360,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="30" uuid="079690a3-b4dc-425a-92f7-1f5293ceb588"/>
+								<reportElement x="0" y="0" width="90" height="30" uuid="1482d473-3aa4-4a6b-b972-61087a302e02"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -370,10 +368,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="d3427fe8-ecf3-422c-bb47-31c9e2212088">
+					<jr:column width="80" uuid="33289735-6215-4845-958a-9b06b4127af3">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="7f54df8b-110e-45b6-9065-4a066bbc924c"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="1ab2760d-7f7c-4f5e-af49-809076598e19"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -382,7 +380,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="5683d71d-f5d2-494a-acd0-3b10bc86b0a9"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="85409ad4-da06-43dd-9e83-b557e25f074c"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -390,10 +388,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="0f457c74-f9c3-4bb0-a71a-3688f3d66598">
+					<jr:column width="80" uuid="e8279a2f-c5c7-4164-8dd9-44b7cd4c0c35">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="235126d8-dcd1-462e-957c-b648c0e82706"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="4fd844fe-0864-4d08-bdef-f99b967dee01"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -402,7 +400,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="d94eab03-73a5-40dc-aae0-764c5f5c6c12"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="ad739e12-c444-4fde-8246-a1b32652262f"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -410,10 +408,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60" uuid="759036f4-50e5-40c6-9775-7d8397e94f24">
+					<jr:column width="60" uuid="8716e18e-3fab-49d9-b79a-57a19a81f7c8">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="60" height="30" uuid="90feba6b-e7f2-4621-86f6-97f966b457b7"/>
+								<reportElement x="0" y="0" width="60" height="30" uuid="de008f30-32f8-4547-adb4-4e86ca6ee5ed"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -422,7 +420,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField pattern="dd/MM/y">
-								<reportElement x="0" y="0" width="60" height="30" uuid="f6859839-6100-43ea-92c5-3bc0ec5c70ed"/>
+								<reportElement x="0" y="0" width="60" height="30" uuid="0e1f63ea-c5a6-4cc6-be0d-a36f4144f85a"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -430,10 +428,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="80" uuid="7c13f77f-d6b2-4dbd-a40b-928a44946943">
+					<jr:column width="80" uuid="df02721c-07f0-45bd-a40b-6212a654294c">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="e506ba78-0f5f-444d-aa71-387c19ad67e4"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="ee287dcf-d172-4a7e-8c1a-b5fddbccf012"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -442,7 +440,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="ea1c82cb-ed54-4635-b8df-721e26934059"/>
+								<reportElement x="0" y="0" width="80" height="30" uuid="0aed8b5f-90ef-4301-bb25-1eb12c092f6f"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -450,10 +448,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="25" uuid="13247ea2-18c1-4055-8418-527fa2c7e737">
+					<jr:column width="25" uuid="3bea861e-58cc-4996-b7ef-2621388622dc">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="25" height="30" uuid="bf1b6cf9-c6f5-482a-9dd1-7bcae45846e3"/>
+								<reportElement x="0" y="0" width="25" height="30" uuid="beff8241-f511-4e74-94d8-a2065268c2a7"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -462,7 +460,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField>
-								<reportElement x="0" y="0" width="25" height="30" uuid="542bcc28-453d-4193-99e2-a1af9e948186"/>
+								<reportElement x="0" y="0" width="25" height="30" uuid="a051d04c-d42b-42c5-8bd8-a4c79f3c018b"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -470,10 +468,10 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="65" uuid="6e254579-6f1c-4de3-98fc-78f5efb842ce">
+					<jr:column width="65" uuid="1cf86760-2e34-4f96-b9b1-602d3340095f">
 						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="65" height="30" uuid="08b4e552-5f30-4be2-a8a7-1643914139c5"/>
+								<reportElement x="0" y="0" width="65" height="30" uuid="b74ed270-874f-40a5-bc6c-2365ed228d74"/>
 								<textElement>
 									<paragraph lineSpacing="Single"/>
 								</textElement>
@@ -482,7 +480,7 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 						</jr:columnHeader>
 						<jr:detailCell style="Table 5_TD" height="30">
 							<textField pattern="dd/MM/y">
-								<reportElement x="0" y="0" width="65" height="30" uuid="a4a1ebe8-b40f-4bf8-8036-96d0af30100e"/>
+								<reportElement x="0" y="0" width="65" height="30" uuid="015d1868-b60b-49fc-a4ef-8c90b0e33616"/>
 								<textElement verticalAlignment="Middle">
 									<paragraph lineSpacing="Single"/>
 								</textElement>

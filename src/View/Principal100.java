@@ -112,6 +112,7 @@ public class Principal100 extends javax.swing.JFrame {
         btnHist = new javax.swing.JButton();
         btnUsrs = new javax.swing.JButton();
         btnUsrs1 = new javax.swing.JButton();
+        btnEmpresa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Laboratorio - LABOCLIN");
@@ -337,6 +338,14 @@ public class Principal100 extends javax.swing.JFrame {
             }
         });
 
+        btnEmpresa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEmpresa.setText("Empresa");
+        btnEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpresaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -368,7 +377,8 @@ public class Principal100 extends javax.swing.JFrame {
                     .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -406,6 +416,8 @@ public class Principal100 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
+                        .addComponent(btnEmpresa)
+                        .addGap(18, 18, 18)
                         .addComponent(btnHist)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsrs)
@@ -433,7 +445,14 @@ public class Principal100 extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String[] data = new String[8];
+        DefaultTableModel model = (DefaultTableModel)searchTable.getModel();
+        if(searchTable.isEditing())
+            searchTable.getCellEditor().stopCellEditing();
+        for(int i=0;i<model.getColumnCount();i++)
+            data[i] = (String)model.getValueAt(0, i);
         edit = new Registrar200(data);
+        model.removeRow(0);
+        model.addRow(new String[8]);
         editSetVisibleAtClose();
         this.setVisible(false);
         edit.setVisible(true);
@@ -474,7 +493,7 @@ public class Principal100 extends javax.swing.JFrame {
     }
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        int confirm = JOptionPane.showConfirmDialog(this,"Confirma que desea salir?","Salir",JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this,"Confirma que desea salir?","Salir",JOptionPane.YES_NO_OPTION,2);
             if(confirm == 0) {
                 this.dispose();
             }
@@ -514,9 +533,11 @@ public class Principal100 extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String[] dataSearch = new String[8];
         DefaultTableModel model = (DefaultTableModel) searchTable.getModel();
-        model.fireTableDataChanged();
-        searchTable.validate();
-        searchTable.getCellEditor().stopCellEditing();
+        //model.fireTableDataChanged();
+        //searchTable.validate();
+        if(searchTable.isEditing()){
+            searchTable.getCellEditor().stopCellEditing();
+        }
         for(int i = 0; i < 8; i++){
             dataSearch[i] = (String) model.getValueAt(0, i);
             if(dataSearch[i] == null){
@@ -640,6 +661,42 @@ public class Principal100 extends javax.swing.JFrame {
         rep.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnUsrs1ActionPerformed
+
+    private void btnEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpresaActionPerformed
+        Empresa800 emp = new Empresa800();
+        emp.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent we) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent we) {
+                setVisible(true);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent we) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent we) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent we) {
+            }
+        });
+        emp.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEmpresaActionPerformed
 
     private void resSetVisbleAtClose(){
         res.addWindowListener(new WindowListener() {
@@ -784,6 +841,7 @@ public class Principal100 extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDel;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnEmpresa;
     private javax.swing.JButton btnHist;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSearch;

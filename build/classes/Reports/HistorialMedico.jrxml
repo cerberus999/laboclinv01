@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.3660269107301415"/>
+	<property name="ireport.zoom" value="1.2418426461183125"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="FechaIni" class="java.lang.String">
@@ -51,7 +51,13 @@ ORDER BY  medico.`MED_ID`, hojaresultados.`HR_FechaEmision` ASC]]>
 	<group name="medico_MED_ID" isStartNewColumn="true">
 		<groupExpression><![CDATA[$F{medico_MED_ID}]]></groupExpression>
 		<groupHeader>
-			<band height="25">
+			<band height="46">
+				<rectangle>
+					<reportElement mode="Transparent" x="0" y="24" width="571" height="21"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
 				<textField evaluationTime="Group" evaluationGroup="medico_MED_ID">
 					<reportElement mode="Transparent" x="0" y="2" width="214" height="23"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -59,13 +65,72 @@ ORDER BY  medico.`MED_ID`, hojaresultados.`HR_FechaEmision` ASC]]>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA["Medico: " + $F{medico_MED_Nombres}]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement x="1" y="24" width="41" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="42" y="24" width="203" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nombre Completo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="246" y="24" width="127" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha de Nacimiento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="373" y="24" width="122" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Edad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="495" y="24" width="76" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sexo]]></text>
+				</staticText>
+				<line>
+					<reportElement x="41" y="24" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="245" y="24" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="372" y="24" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="495" y="24" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
 			</band>
 		</groupHeader>
 	</group>
 	<group name="hojaresultados_HR_FechaEmision">
 		<groupExpression><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></groupExpression>
 		<groupHeader>
-			<band height="21">
+			<band height="20">
 				<textField evaluationTime="Group" evaluationGroup="hojaresultados_HR_FechaEmision" pattern="dd/MM/yyyy">
 					<reportElement x="471" y="0" width="100" height="20"/>
 					<textElement verticalAlignment="Middle" lineSpacing="Single">
@@ -91,28 +156,48 @@ ORDER BY  medico.`MED_ID`, hojaresultados.`HR_FechaEmision` ASC]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="26">
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="356" y="3" width="100" height="23"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaIni}]]></textFieldExpression>
-			</textField>
+		<band height="27">
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="472" y="3" width="100" height="23"/>
+				<reportElement x="496" y="3" width="76" height="23"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaFin}]]></textFieldExpression>
 			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="359" y="3" width="76" height="23"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaIni}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="435" y="3" width="60" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="299" y="3" width="60" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="4"/>
+		<band height="2"/>
 	</columnHeader>
 	<detail>
 		<band height="21">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="571" height="21"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="246" y="0" width="128" height="20" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single"/>
@@ -139,41 +224,35 @@ ORDER BY  medico.`MED_ID`, hojaresultados.`HR_FechaEmision` ASC]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<reportElement x="0" y="0" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="42" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<reportElement x="42" y="0" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="245" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<reportElement x="245" y="0" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="495" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<reportElement x="495" y="0" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="373" y="0" width="1" height="19" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
+				<reportElement x="373" y="0" width="1" height="21" printWhenGroupChanges="hojaresultados_HR_FechaEmision"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
 			</line>
-			<rectangle>
-				<reportElement mode="Transparent" x="0" y="0" width="571" height="21"/>
-				<graphicElement>
-					<pen lineWidth="0.25"/>
-				</graphicElement>
-			</rectangle>
 		</band>
 	</detail>
 </jasperReport>

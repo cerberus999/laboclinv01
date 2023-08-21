@@ -15,8 +15,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -27,7 +25,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
-import laboclinv01.ComboBoxRender;
 
 /**
  *
@@ -65,40 +62,35 @@ public class Empresa800 extends javax.swing.JFrame {
         //tc.setCellRenderer(new ComboBoxRender(jcb));
         tc.setCellEditor(dcbce);
         
-        dtm.addTableModelListener(new TableModelListener() {
-            @Override
-            public void tableChanged(TableModelEvent tme) {
-                if(tme.getType() == TableModelEvent.UPDATE){
+        dtm.addTableModelListener((TableModelEvent tme) -> {
+            if(tme.getType() == TableModelEvent.UPDATE){
+                
+                TableModel tm = (TableModel) tme.getSource();
+                
+                int fila = tme.getFirstRow();
+                int columna = tme.getColumn();
+                
+                if(columna == 4){
                     
-                    
-                    
-                    TableModel tm = (TableModel) tme.getSource();
-                    
-                    int fila = tme.getFirstRow();
-                    int columna = tme.getColumn();
-                    
-                    if(columna == 4){
-                    
-                        String fechaNac = dtm.getValueAt(fila, columna).toString();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                        try {
-                            Date date = sdf.parse(fechaNac);
-
-                            LocalDate ldb = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                            LocalDate ldn = LocalDate.now();
-                            Period p = Period.between(ldb, ldn);
-                            int aux = p.getYears();
-                            String val;
-                            if(aux < 1){
-                                val = "" + p.getMonths() + " meses, " + p.getDays() + " días";
-                            }else
-                                val = "" + aux + " años";
-                            
-                            dtm.setValueAt(val, fila, columna+1);
-                            
-                        } catch (ParseException ex) {
-                            JOptionPane.showMessageDialog(null, ex.getMessage());
-                        }
+                    String fechaNac = dtm.getValueAt(fila, columna).toString();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        Date date = sdf.parse(fechaNac);
+                        
+                        LocalDate ldb = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                        LocalDate ldn = LocalDate.now();
+                        Period p = Period.between(ldb, ldn);
+                        int aux = p.getYears();
+                        String val;
+                        if(aux < 1){
+                            val = "" + p.getMonths() + " meses, " + p.getDays() + " días";
+                        }else
+                            val = "" + aux + " años";
+                        
+                        dtm.setValueAt(val, fila, columna+1);
+                        
+                    } catch (ParseException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage());
                     }
                 }
             }

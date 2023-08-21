@@ -40,7 +40,9 @@ public class HojasResultados300 extends javax.swing.JFrame {
         setName();
         addMnemonics();
         DefaultTableModel def = (DefaultTableModel)AnalisysTable.getModel();
-        idSelected = Integer.parseInt( (String) def.getValueAt(0, 0));
+        if(def.getRowCount() > 0){
+            idSelected = Integer.parseInt( (String) def.getValueAt(0, 0));
+        }
         //jLabel2.setText(nombre);
     }
     
