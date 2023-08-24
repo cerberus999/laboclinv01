@@ -379,7 +379,10 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         );
 
         btnSave.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Save.png"))); // NOI18N
         btnSave.setText("Guardar");
+        btnSave.setHideActionText(true);
+        btnSave.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -387,7 +390,10 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         });
 
         btnCancel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Close.png"))); // NOI18N
         btnCancel.setText("Cancelar");
+        btnCancel.setHideActionText(true);
+        btnCancel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -416,9 +422,8 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancel)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(btnCancel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

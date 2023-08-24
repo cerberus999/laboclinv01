@@ -84,7 +84,9 @@ public class Registrar200 extends javax.swing.JFrame {
         setResizable(false);
 
         btnCancelReg.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnCancelReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Close.png"))); // NOI18N
         btnCancelReg.setText("Cancelar");
+        btnCancelReg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnCancelReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelRegActionPerformed(evt);
@@ -92,7 +94,9 @@ public class Registrar200 extends javax.swing.JFrame {
         });
 
         btnSaveReg.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSaveReg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Save.png"))); // NOI18N
         btnSaveReg.setText("Guardar");
+        btnSaveReg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSaveReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveRegActionPerformed(evt);

@@ -169,7 +169,9 @@ public class EmpresaExamenes extends javax.swing.JFrame {
         });
 
         btnSiguiente.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Next.png"))); // NOI18N
         btnSiguiente.setText("Siguiente");
+        btnSiguiente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
@@ -190,7 +192,9 @@ public class EmpresaExamenes extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         btnSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSalir.setText("Retroceder");
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Back.png"))); // NOI18N
+        btnSalir.setText("Atrás");
+        btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -223,9 +227,9 @@ public class EmpresaExamenes extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSiguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

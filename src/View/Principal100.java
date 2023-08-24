@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.PreparedStatement;
+import javax.swing.table.TableModel;
 import laboclinv01.SqlConector;
 
 /**
@@ -123,7 +124,9 @@ public class Principal100 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/AddPAC.png"))); // NOI18N
         btnAdd.setText("Agregar");
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -131,7 +134,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnDel.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/DeletePAC.png"))); // NOI18N
         btnDel.setText("Eliminar");
+        btnDel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDel.setMaximumSize(new java.awt.Dimension(71, 23));
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +145,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnEdit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/EditPAC.png"))); // NOI18N
         btnEdit.setText("Editar");
+        btnEdit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -156,7 +163,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Close.png"))); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -307,6 +316,7 @@ public class Principal100 extends javax.swing.JFrame {
         }
 
         clear.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Brush.png"))); // NOI18N
         clear.setText("Limpiar");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,7 +325,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnHist.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnHist.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/History.png"))); // NOI18N
         btnHist.setText("Historial");
+        btnHist.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnHist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistActionPerformed(evt);
@@ -323,7 +335,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnUsrs.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnUsrs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Entity.png"))); // NOI18N
         btnUsrs.setText("Usuarios");
+        btnUsrs.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnUsrs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsrsActionPerformed(evt);
@@ -331,7 +345,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnUsrs1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnUsrs1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Reports.png"))); // NOI18N
         btnUsrs1.setText("Reportes");
+        btnUsrs1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnUsrs1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsrs1ActionPerformed(evt);
@@ -339,7 +355,9 @@ public class Principal100 extends javax.swing.JFrame {
         });
 
         btnEmpresa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Company.png"))); // NOI18N
         btnEmpresa.setText("Empresa");
+        btnEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmpresaActionPerformed(evt);
@@ -367,13 +385,13 @@ public class Principal100 extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnHist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -399,6 +417,7 @@ public class Principal100 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,14 +435,14 @@ public class Principal100 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEmpresa)
-                        .addGap(18, 18, 18)
                         .addComponent(btnHist)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEmpresa)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsrs)
                         .addGap(18, 18, 18)
                         .addComponent(btnUsrs1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(97, 97, 97)
                         .addComponent(btnSalir)))
                 .addContainerGap())
         );
@@ -551,7 +570,6 @@ public class Principal100 extends javax.swing.JFrame {
         "ORDER BY PAC_ID DESC LIMIT " + (page*20) + "20" ;
         
         dataTableHandle("SpecifyQuerySearch", query, dataSearch);
-        //String query = "SELECT * FROM paciente WHERE "
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void forwBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwBtnActionPerformed
@@ -575,9 +593,9 @@ public class Principal100 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        DefaultTableModel dtm = (DefaultTableModel) searchTable.getModel();
+        TableModel dtm = searchTable.getModel();
         for(int i = dtm.getColumnCount()-1; i > 0 ;i--){
-            dtm.setValueAt("", 0, i);
+            dtm.setValueAt(null, 0, i);
         }
         mainQuery = ""+generalQuery;
         mostrar();

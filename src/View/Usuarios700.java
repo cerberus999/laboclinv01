@@ -108,7 +108,9 @@ public class Usuarios700 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/UserADD.png"))); // NOI18N
         btnAdd.setText("Agregar");
+        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -116,7 +118,9 @@ public class Usuarios700 extends javax.swing.JFrame {
         });
 
         btnDes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnDes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/UserDelete.png"))); // NOI18N
         btnDes.setText("Desactivar");
+        btnDes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDes.setMaximumSize(new java.awt.Dimension(71, 23));
         btnDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +129,9 @@ public class Usuarios700 extends javax.swing.JFrame {
         });
 
         btnEdit.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/UserEdit.png"))); // NOI18N
         btnEdit.setText("Editar");
+        btnEdit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
@@ -134,6 +140,7 @@ public class Usuarios700 extends javax.swing.JFrame {
 
         btnSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnSearch.setText("Buscar");
+        btnSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
@@ -141,7 +148,9 @@ public class Usuarios700 extends javax.swing.JFrame {
         });
 
         btnSalir.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSalir.setText("Salir");
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Back.png"))); // NOI18N
+        btnSalir.setText("Atrás");
+        btnSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -279,7 +288,9 @@ public class Usuarios700 extends javax.swing.JFrame {
         }
 
         clear.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/Brush.png"))); // NOI18N
         clear.setText("Limpiar");
+        clear.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
@@ -307,12 +318,12 @@ public class Usuarios700 extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(btnDes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())

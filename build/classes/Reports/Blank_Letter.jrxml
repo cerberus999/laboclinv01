@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 5.5.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88ba5f35-2887-41de-97bd-63694bb88e7f">
-	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -9,9 +11,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -19,9 +20,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -29,9 +29,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -39,9 +38,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -49,9 +47,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -59,9 +56,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 2_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -69,9 +65,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table 2_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -79,9 +74,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -89,9 +83,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 3_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -99,9 +92,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table 3_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -109,9 +101,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 3_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -119,9 +110,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 4_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -129,9 +119,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table 4_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -139,9 +128,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 4_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -149,9 +137,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 5_TH" mode="Opaque" backcolor="#F0F8FF">
+	<style name="Table 5_TH" mode="Opaque" backcolor="#F0F8FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -159,9 +146,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 5_CH" mode="Opaque" backcolor="#BFE1FF">
+	<style name="Table 5_CH" mode="Opaque" backcolor="#BFE1FF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -169,9 +155,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<style name="Table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+	<style name="Table 5_TD" mode="Opaque" backcolor="#FFFFFF" lineSpacing="Single">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
 			<topPen lineWidth="0.5" lineColor="#000000"/>
@@ -179,9 +164,8 @@
 			<bottomPen lineWidth="0.5" lineColor="#000000"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
-		<paragraph lineSpacing="Single"/>
 	</style>
-	<subDataset name="Dataset1" uuid="681edf07-4e61-4e9c-9a9f-fccefd6b540b">
+	<subDataset name="Dataset1">
 		<parameter name="FechaInicio" class="java.lang.String"/>
 		<parameter name="FechaFinal" class="java.lang.String"/>
 		<queryString>
@@ -202,8 +186,8 @@ ORDER BY HR_FechaEmision DESC]]>
 		<field name="PAC_oculto" class="java.lang.Boolean"/>
 		<field name="HR_FechaEmision" class="java.sql.Date"/>
 	</subDataset>
-	<parameter name="FechaInicio" class="java.lang.String"/>
-	<parameter name="FechaFinal" class="java.lang.String"/>
+	<parameter name="FechaIni" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT p.*, hr.HR_FechaEmision
 FROM paciente p, hojaresultados hr
@@ -253,10 +237,9 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 	<title>
 		<band height="63">
 			<staticText>
-				<reportElement x="1" y="0" width="570" height="61" uuid="1a67679d-db0b-4ba7-9ab3-9d593ae22482"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="1" y="0" width="570" height="61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font size="25"/>
-					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Listado de pacientes]]></text>
 			</staticText>
@@ -265,231 +248,28 @@ WHERE p.PAC_ID = hr.PAC_ID]]>
 	<pageHeader>
 		<band height="32">
 			<textField>
-				<reportElement x="370" y="0" width="70" height="30" uuid="be69d096-ae13-41d7-8205-5f87c5ea2604"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{FechaInicio}]]></textFieldExpression>
+				<reportElement x="370" y="0" width="70" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaIni}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="500" y="0" width="70" height="30" uuid="00f57bd4-114b-40a8-8103-5b14df6e335c"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{FechaInicio}]]></textFieldExpression>
+				<reportElement x="500" y="0" width="70" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{FechaFin}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="320" y="0" width="50" height="30" uuid="568eaf0b-fd50-4930-a2e9-a4e0511ae9c4"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<paragraph lineSpacing="Single"/>
-				</textElement>
+				<reportElement x="320" y="0" width="50" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single" markup="none"/>
 				<text><![CDATA[Desde:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="450" y="0" width="50" height="30" uuid="3f488f7c-d605-4834-9c7a-792f44b974f5"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
-					<paragraph lineSpacing="Single"/>
-				</textElement>
+				<reportElement x="450" y="0" width="50" height="30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single" markup="none"/>
 				<text><![CDATA[Hasta:]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<summary>
-		<band height="77">
-			<componentElement>
-				<reportElement x="0" y="0" width="570" height="64" uuid="d5e78894-f582-4755-86e3-ead2d8a642bb"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Dataset1" uuid="e877e4d5-ec00-4cb8-ba71-e310abe4b7df">
-						<datasetParameter name="FechaInicio">
-							<datasetParameterExpression><![CDATA[$P{FechaInicio}]]></datasetParameterExpression>
-						</datasetParameter>
-						<datasetParameter name="FechaFinal">
-							<datasetParameterExpression><![CDATA[$P{FechaFinal}]]></datasetParameterExpression>
-						</datasetParameter>
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="25" uuid="e277e3b3-0323-4391-8a85-902d7f2ecad9">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="25" height="30" uuid="3e368cfb-e9ed-4bfb-9528-74efc66b77c8"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[ID]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="25" height="30" uuid="dd1fe27e-92d4-4854-afe1-4ee6cc53b0c8"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_ID}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="65" uuid="0bf1a2ed-5ae8-49f4-b741-d0a5a3f3807b">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="65" height="30" uuid="cd976b42-3fb6-4bf4-949e-b6d9c27fd890"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[CI]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="65" height="30" uuid="82898b6e-d5f1-463b-8baf-c2e31fa801fa"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_CI}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="5ba826a4-a81a-426a-9869-1f265565312c">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="239f1cd7-6c3f-42b7-9e1c-af40d35ade76"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Nombres]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="90" height="30" uuid="1482d473-3aa4-4a6b-b972-61087a302e02"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_Nombres}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="80" uuid="33289735-6215-4845-958a-9b06b4127af3">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="1ab2760d-7f7c-4f5e-af49-809076598e19"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Apellido Paterno]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="85409ad4-da06-43dd-9e83-b557e25f074c"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_ApePat}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="80" uuid="e8279a2f-c5c7-4164-8dd9-44b7cd4c0c35">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="4fd844fe-0864-4d08-bdef-f99b967dee01"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Apellido Materno]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="ad739e12-c444-4fde-8246-a1b32652262f"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_ApeMat}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="60" uuid="8716e18e-3fab-49d9-b79a-57a19a81f7c8">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="60" height="30" uuid="de008f30-32f8-4547-adb4-4e86ca6ee5ed"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Fecha de Nacimiento]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField pattern="dd/MM/y">
-								<reportElement x="0" y="0" width="60" height="30" uuid="0e1f63ea-c5a6-4cc6-be0d-a36f4144f85a"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_FechaNac}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="80" uuid="df02721c-07f0-45bd-a40b-6212a654294c">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="ee287dcf-d172-4a7e-8c1a-b5fddbccf012"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Edad]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="0aed8b5f-90ef-4301-bb25-1eb12c092f6f"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_Edad}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="25" uuid="3bea861e-58cc-4996-b7ef-2621388622dc">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="25" height="30" uuid="beff8241-f511-4e74-94d8-a2065268c2a7"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Sexo]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField>
-								<reportElement x="0" y="0" width="25" height="30" uuid="a051d04c-d42b-42c5-8bd8-a4c79f3c018b"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{PAC_Sexo}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="65" uuid="1cf86760-2e34-4f96-b9b1-602d3340095f">
-						<jr:columnHeader style="Table 5_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="65" height="30" uuid="b74ed270-874f-40a5-bc6c-2365ed228d74"/>
-								<textElement>
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<text><![CDATA[Fecha de Emision]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="Table 5_TD" height="30">
-							<textField pattern="dd/MM/y">
-								<reportElement x="0" y="0" width="65" height="30" uuid="015d1868-b60b-49fc-a4ef-8c90b0e33616"/>
-								<textElement verticalAlignment="Middle">
-									<paragraph lineSpacing="Single"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{HR_FechaEmision}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
-		</band>
+		<band height="77"/>
 	</summary>
 </jasperReport>
