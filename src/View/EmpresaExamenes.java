@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
 
@@ -45,6 +46,9 @@ public class EmpresaExamenes extends javax.swing.JFrame {
         initComponents();
         getExams();
         fillJListSelector();
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
         //cambia fuente de lo seleccionable y lo que no lo es 
         //setEnabled();
     }
@@ -142,7 +146,7 @@ public class EmpresaExamenes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
 
         btnUnselExam.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnUnselExam.setText("<");

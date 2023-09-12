@@ -16,12 +16,12 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Vector;
 import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -42,6 +42,9 @@ public class Empresa800 extends javax.swing.JFrame {
         initComponents();
         initTable();
         btnAniadir.setMnemonic(KeyEvent.VK_A);
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
     
     private void initTable(){
@@ -118,7 +121,7 @@ public class Empresa800 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(173, 216, 230));
 
         patientsTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         patientsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -184,7 +187,7 @@ public class Empresa800 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro de pacientes para Empresas");
+        jLabel1.setText("Registro masivo de Pacientes");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

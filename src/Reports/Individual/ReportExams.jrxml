@@ -46,7 +46,7 @@ WHERE
 		<field name="paciente_PAC_Sexo" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="HR_ID" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["384"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -124,7 +124,7 @@ WHERE
 				<textElement lineSpacing="Single">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hojaresultados_HR_FechaEmision}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -134,14 +134,14 @@ WHERE
 	<detail>
 		<band height="16">
 			<elementGroup>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="274" y="0" width="39" height="13"/>
 					<textElement textAlignment="Right" lineSpacing="Single">
 						<font fontName="Arial" size="10"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{analito_ANA_UnidadMed}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="222" y="0" width="52" height="13"/>
 					<textElement textAlignment="Right" lineSpacing="Single">
 						<font fontName="Arial" size="10"/>
@@ -169,17 +169,17 @@ WHERE
 		<band height="5"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="130">
-			<frame>
-				<reportElement mode="Transparent" x="-10" y="90" width="621" height="40" backcolor="#000099"/>
-			</frame>
+		<band height="131">
 			<image scaleImage="FillFrame">
 				<reportElement x="36" y="3" width="87" height="87"/>
-				<imageExpression class="java.awt.Image"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+				<imageExpression class="java.lang.String"><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
 new com.google.zxing.qrcode.QRCodeWriter().encode(
 "https://sipro01.firebaseapp.com/",
 com.google.zxing.BarcodeFormat.QR_CODE, 300, 300))]]></imageExpression>
 			</image>
+			<frame>
+				<reportElement mode="Transparent" x="-10" y="90" width="621" height="41" backcolor="#000099"/>
+			</frame>
 		</band>
 	</pageFooter>
 </jasperReport>

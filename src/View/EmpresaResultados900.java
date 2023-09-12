@@ -9,12 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import laboclinv01.SqlConector;
@@ -55,6 +52,9 @@ public class EmpresaResultados900 extends javax.swing.JFrame {
                 dtm.addColumn(a[1]);
             }
         }
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
 //        chargeTable.getColumnModel().getColumn(1).setPreferredWidth(210);
     }
 
@@ -78,7 +78,7 @@ public class EmpresaResultados900 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
 
         chargeTable.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         chargeTable.setModel(new javax.swing.table.DefaultTableModel(

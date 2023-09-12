@@ -17,6 +17,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.PreparedStatement;
+import javax.swing.DefaultCellEditor;
+import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableModel;
 import laboclinv01.SqlConector;
 
@@ -35,26 +40,37 @@ public class Principal100 extends javax.swing.JFrame {
     private String mainQuery = "";
     private String varQuery = "";
     private String pageQuery = "SELECT count(1)/20 FROM paciente WHERE PAC_ID LIKE '%%' AND  "+ varQuery +" PAC_oculto = 0";
+    private String user;
 
     /**
      * Creates new form Init
      * @param permisos
+     * @param user
      */
-    public Principal100(int[] permisos){
+    public Principal100(int[] permisos, String user){
         this.permisos = permisos;
         initComponents();
         addMnemonics();
         mostrar();
         btnUsrs.setVisible(false);
         btnUsrs1.setVisible(false);
-        if(this.permisos[3] == 1){
+        if(this.permisos[3] == 1)
             btnUsrs.setVisible(true);
-        }
-        if(this.permisos[0] == 1){
+        
+        if(this.permisos[0] == 1)
             btnUsrs1.setVisible(true);
-        }
+        
         patientsTable.changeSelection(0, 0, false, false);
         idSelected = Integer.parseInt((String) patientsTable.getValueAt(0, 0));
+        
+        MyCellEditor mce = new MyCellEditor(searchTable);
+        for(int i=0;i<8;i++)
+            searchTable.getColumnModel().getColumn(i).setCellEditor(mce);
+        this.user = user;
+      
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
     
     public Principal100() {
@@ -82,7 +98,7 @@ public class Principal100 extends javax.swing.JFrame {
         jLabel3.setText("Página: " + (page+1) + "/" + cantPages);
         dataTableHandle("QueryReturnRefreshTable",query,new String[8]);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,7 +112,6 @@ public class Principal100 extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,6 +129,7 @@ public class Principal100 extends javax.swing.JFrame {
         btnUsrs = new javax.swing.JButton();
         btnUsrs1 = new javax.swing.JButton();
         btnEmpresa = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Laboratorio - LABOCLIN");
@@ -121,7 +137,7 @@ public class Principal100 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
 
         btnAdd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/AddPAC.png"))); // NOI18N
@@ -151,14 +167,6 @@ public class Principal100 extends javax.swing.JFrame {
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
-            }
-        });
-
-        btnSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSearch.setText("Buscar");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
             }
         });
 
@@ -299,7 +307,8 @@ public class Principal100 extends javax.swing.JFrame {
         });
         searchTable.setAutoscrolls(false);
         searchTable.setRowHeight(19);
-        searchTable.setSurrendersFocusOnKeystroke(true);
+        searchTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        searchTable.setSelectionForeground(new java.awt.Color(0, 0, 0));
         searchTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(searchTable);
         if (searchTable.getColumnModel().getColumnCount() > 0) {
@@ -364,6 +373,17 @@ public class Principal100 extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Correct/About.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -381,10 +401,12 @@ public class Principal100 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(forwBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(clear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,7 +414,6 @@ public class Principal100 extends javax.swing.JFrame {
                     .addComponent(btnEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUsrs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -404,15 +425,11 @@ public class Principal100 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(clear)))
-                .addGap(17, 17, 17)
+                    .addComponent(jLabel2)
+                    .addComponent(clear))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,7 +460,9 @@ public class Principal100 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnUsrs1)
                         .addGap(97, 97, 97)
-                        .addComponent(btnSalir)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalir)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -549,11 +568,9 @@ public class Principal100 extends javax.swing.JFrame {
         edit.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    private void searchPAC(){
         String[] dataSearch = new String[8];
         DefaultTableModel model = (DefaultTableModel) searchTable.getModel();
-        //model.fireTableDataChanged();
-        //searchTable.validate();
         if(searchTable.isEditing()){
             searchTable.getCellEditor().stopCellEditing();
         }
@@ -562,7 +579,6 @@ public class Principal100 extends javax.swing.JFrame {
             if(dataSearch[i] == null){
                 dataSearch[i] = "";
             }
-            //System.out.println(dataSearch[i]);
         }
         String query = "SELECT PAC_ID,PAC_CI, PAC_Nombres, PAC_ApePat, PAC_ApeMat ,PAC_FechaNac, PAC_Edad,"+
         "PAC_Sexo FROM paciente WHERE PAC_CI LIKE ? AND PAC_Nombres LIKE ? AND PAC_ApePat LIKE ? AND PAC_ApeMat LIKE ? "+
@@ -570,8 +586,8 @@ public class Principal100 extends javax.swing.JFrame {
         "ORDER BY PAC_ID DESC LIMIT " + (page*20) + "20" ;
         
         dataTableHandle("SpecifyQuerySearch", query, dataSearch);
-    }//GEN-LAST:event_btnSearchActionPerformed
-
+    }
+    
     private void forwBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwBtnActionPerformed
         if(page < cantPages-1)  page++;
         mostrar();
@@ -645,7 +661,7 @@ public class Principal100 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsrsActionPerformed
 
     private void btnUsrs1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsrs1ActionPerformed
-        Reportes500 rep = new Reportes500();
+        Reportes500 rep = new Reportes500(user);
         rep.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent we) {
@@ -715,6 +731,11 @@ public class Principal100 extends javax.swing.JFrame {
         emp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnEmpresaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        About ab = new About();
+        ab.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void resSetVisbleAtClose(){
         res.addWindowListener(new WindowListener() {
@@ -862,11 +883,11 @@ public class Principal100 extends javax.swing.JFrame {
     private javax.swing.JButton btnEmpresa;
     private javax.swing.JButton btnHist;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUsrs;
     private javax.swing.JButton btnUsrs1;
     private javax.swing.JButton clear;
     private javax.swing.JButton forwBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -883,8 +904,33 @@ public class Principal100 extends javax.swing.JFrame {
         btnAdd.setMnemonic(KeyEvent.VK_A);
         btnDel.setMnemonic(KeyEvent.VK_L);
         btnEdit.setMnemonic(KeyEvent.VK_E);
-        btnSearch.setMnemonic(KeyEvent.VK_B);
         btnHist.setMnemonic(KeyEvent.VK_H);
         
+    }
+    
+    class MyCellEditor extends DefaultCellEditor {
+    private JTextField textField;
+
+    public MyCellEditor(JTable table) {
+        super(new JTextField());
+        textField = (JTextField) getComponent();
+        textField.setBorder(null);
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    searchPAC();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    searchPAC();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    // Plain text components don't fire these events
+                }
+            });
+        }
     }
 }

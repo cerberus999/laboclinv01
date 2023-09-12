@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
 
@@ -43,6 +44,10 @@ public class Registrar200 extends javax.swing.JFrame {
             dateFechaNac.setDate((java.util.Date)Date.valueOf(data[5]));
         txtEdad.setText(data[6]);//FechaN
         cmbSexo.setSelectedItem(data[7]);//sexo
+        
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
 
     /**
@@ -103,7 +108,7 @@ public class Registrar200 extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
 
         txtID.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtID.setDisabledTextColor(new java.awt.Color(0, 0, 0));

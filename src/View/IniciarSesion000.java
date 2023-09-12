@@ -7,6 +7,7 @@ package View;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
 
@@ -23,6 +24,9 @@ public class IniciarSesion000 extends javax.swing.JFrame {
     public IniciarSesion000() {
         initComponents();
         this.getRootPane().setDefaultButton(btnConfirm);
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
 
     /**
@@ -47,7 +51,7 @@ public class IniciarSesion000 extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -115,12 +119,16 @@ public class IniciarSesion000 extends javax.swing.JFrame {
                 while(rs.next())
                     perm[rs.getInt(1)-1] = 1;              
                 
-                p1 = new Principal100(perm);
+                p1 = new Principal100(perm,txtUser.getText());
                 p1.setVisible(true);
                 this.dispose();
             }
-            else    
+            else{
                 JOptionPane.showMessageDialog(this, "Usuario incorrecto");
+                txtPass.setText(null);
+                txtUser.setText(null);
+                txtUser.requestFocus();
+            }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }

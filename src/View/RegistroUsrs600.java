@@ -5,13 +5,13 @@
  */
 package View;
 
-import laboclinv01.CustomRenderJList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import laboclinv01.SqlConector;
 import laboclinv01.JTextFieldControl;
@@ -39,11 +39,17 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         ID = id;
         initUI();
         fillData();
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
     
     public RegistroUsrs600() {
         initComponents();
         initUI();
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
 
     private void initUI(){
@@ -170,7 +176,7 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
         jPanel1.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -244,6 +250,7 @@ public class RegistroUsrs600 extends javax.swing.JFrame {
         txtID.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtID.setEnabled(false);
 
+        chckState.setBackground(new java.awt.Color(173, 216, 230));
         chckState.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         chckState.setSelected(true);
         chckState.setText("Activo");

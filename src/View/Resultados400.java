@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import laboclinv01.JTextFieldControl;
@@ -47,6 +48,9 @@ public class Resultados400 extends javax.swing.JFrame {
         Resultados400.patientID = ID;
         initUI();
         addMnemonics();
+        this.setTitle("ADMILAB 1.0");
+        ImageIcon icon = new ImageIcon("C:\\Reports\\MainIcon.png");
+        this.setIconImage(icon.getImage());
     }
     
     private void addMnemonics(){
@@ -174,7 +178,7 @@ public class Resultados400 extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(173, 216, 230));
 
         tableExamenes.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         tableExamenes.setModel(new javax.swing.table.DefaultTableModel(
